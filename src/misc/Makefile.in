@@ -1,7 +1,7 @@
 SRCDIR=@top_srcdir@
 INCDIR=@top_srcdir@/include
 include ../Makefile.inc
-CC=@CC@
+CC=@CXX@
 ROOTDIR=../../
 LIB=misc.$(LSUFFIX)
 OBJS=misc.o alloc.o md5.o
