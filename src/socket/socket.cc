@@ -4,8 +4,9 @@
  *   Copyright C 1998 ***REMOVED*** <Mysidia>
  *   see file 'AUTHORS' for a comprehensive list of pIrcd authors
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the file 'LICENSE' included with this package
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public license Version 2
+ *   as published by the Free Software Foundation.
  *
  *   This program is distributed in the hope that it will be useful,
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -20,6 +21,8 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/stat.h>
+#include <sys/select.h>
+#include <sys/poll.h>
 #include <fcntl.h>
 #include "pircd.h"
 #include "sockstuff.h"
@@ -28,6 +31,12 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#undef USE_SELECT
+#define USE_POLL
+
+namespace socketio {
+  int highest_fd = 0, num_sockets = 0;
+}
 
 /* aListener queued_listen; */
 LIST_HEAD(,sListener)       firstqlport;
@@ -101,6 +110,7 @@ void stop_listening(aListener *tmp)
 	tmp->fd = -1;
 	LIST_REMOVE(tmp, portent);
 	free_listener(tmp);
+	socketio::num_sockets--;
 }
 
 void start_listening(aListener *start)
@@ -112,7 +122,7 @@ void start_listening(aListener *start)
              log_error("start_listening: err start already open");
              return;
         }
-        start->fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+        start->fd = ::socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
         if ((start->fd < 0)) {
             log_error("socket: %s", strerror(errno));
@@ -139,6 +149,7 @@ void start_listening(aListener *start)
         LIST_ENTRY_INIT(newlistener, portent);
         LIST_INSERT_HEAD(&listenlist, newlistener, portent);
 	DebugLog(8, "Now Listening on port %d.", newlistener->port);
+	socketio::num_sockets++;
 }
 
 
@@ -243,3 +254,75 @@ void    set_sock_opts(int fd)
 }
 
 
+namespace socketio {
+
+  void listener_accept(aListener *lst) {
+  }
+
+  void pollio(time_t caltime = 0) {
+       struct timeval tv;
+       aListener *ltmp;
+#if defined(USE_SELECT)
+       fd_set readfd, writefd, xceptfd;
+#elif defined(USE_POLL)
+       struct pollfd *pollfds;
+       int x = 0;
+#endif
+       int nfds = 0;
+
+       if (!caltime)
+           caltime = time(NULL);
+       tv.tv_sec = time(NULL) - caltime;
+       tv.tv_usec = 0;
+#if defined(USE_SELECT)
+       FD_ZERO(&readfd);
+       FD_ZERO(&writefd);
+       xceptfd = readfd;
+
+       for (ltmp = LIST_FIRST(&listenlist) ;
+            ltmp ; ltmp = LIST_NEXT(ltmp, portent))
+            FD_SET(ltmp->fd, &readfd);
+
+       xceptfd = readfd;
+       nfds = select(highest_fd+1, &readfd, &writefd, &xceptfd, &tv);
+       if (nfds == -1) {
+           perror("select");
+           sleep(1);
+       }
+       else if (nfds < 1)
+           return;
+#elif defined(USE_POLL)
+       pollfds = new pollfd [sizeof(struct pollfd) * (num_sockets + 1)];
+       memset(pollfds, 0, sizeof(struct pollfd) * (num_sockets + 1));
+       for (x = 0, ltmp = LIST_FIRST(&listenlist) ;
+            ltmp ; ltmp = LIST_NEXT(ltmp, portent))
+       {
+            pollfds[x].fd = ltmp->fd;
+            pollfds[x].events = POLLIN | POLLERR | POLLHUP;
+            x++;
+       }
+       nfds = poll(pollfds, x+1, 1000 * tv.tv_sec);
+#endif
+
+#if defined(USE_SELECT)
+       for(; nfds >= 0; nfds--) {
+#elif defined(USE_POLL)
+       for(; x >= 0; x--) {
+#endif
+           for (ltmp = LIST_FIRST(&listenlist) ;
+                ltmp ; ltmp = LIST_NEXT(ltmp, portent))
+           {
+#if defined(USE_SELECT)
+                if (FD_ISSET(ltmp->fd, read_set))
+#elif defined(USE_POLL)
+                if (pollfds[x].revents & POLLIN)
+#endif
+                    listener_accept(ltmp);
+           }
+       }
+
+#if !defined(USE_SELECT) && defined(USE_POLL)
+       delete pollfds;
+#endif
+  }
+}
