@@ -1,0 +1,22 @@
+This layer's job is to handle not only domain resolution but client/server
+validation.
+
+That is, when a client identifies itself to pIrcd as a user or server, the
+system will ask this layer whether it is ok for the user to signon or not.
+
+Resolving their host, doing an ident check, making sure they aren't coming
+from an open socks server or banned host is all the job of this layer.
+
+Currently it can only do DNSes and the communication methods aren't yet
+complete.
+
+Perhaps we should be using the ADNS library and unix domain sockets so
+these processes can be controlled by the admin rather than having them
+forked off the main process.
+
+Additionally, oper and server link authenticators are to be validated by
+an appropriate module in this layer.  Traditionally, opers and servers are
+authenticated by passwords, however this layer should eventually support
+use of client and server x.509 certificates.
+
+In the future, this layer will be called, the 'authentication layer'.

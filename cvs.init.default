@@ -1,0 +1,19 @@
+#!/bin/sh
+export CVS_UMASK="027"
+export CVS_ROOTDIR='/cvsroot/irc2010'
+export PATH="$PATH:`pwd`"
+export EDITOR="/usr/bin/vi"
+export VISUAL="/usr/bin/vi"
+export CVS_RSH="/usr/local/bin/ssh"
+export MACHINE='cvs.irc2010.sourceforge.net'
+
+if [ -n "$1" ] ; then
+    MYUID="$1"
+    shift 1
+    export CVSROOT=":ext:$MYUID@$MACHINE:$CVS_ROOTDIR"
+    if [ "$1" = "-s" ] ; then
+        sh
+    fi
+fi
+
+

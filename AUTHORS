@@ -1,0 +1,28 @@
+#
+#    Contributers
+# 
+
+See `LICENSE' for licensing and copyright information
+
+This product includes software developed by the University of 
+California, Berkeley and its contributors.
+
+This product includes software developed by SSH Communications Security Oy, Espoo, Finland
+All rights reserved.
+
+            Makefiles/config scripts, Actual Protocol Messages
+                      Sockets, Internal structures
+                  Utility macros/functions, DNS resolver
+                      version control/code managment
+----------------------------------------------------------------------------------------
+Mysidia (C) 1998		***REMOVED***
+
+
+                                Internal Structures
+----------------------------------------------------------------------------------------
+binary
+
+
+
+----------------------------------------------------------------------------------------
+

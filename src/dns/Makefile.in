@@ -1,0 +1,14 @@
+SRCDIR=@top_srcdir@
+INCDIR=@top_srcdir@/include
+include ../Makefile.inc
+CC=@CC@
+LIB=resolver.$(LSUFFIX)
+OBJS= \
+	gethn.o        res_data.o     res_init.o     res_query.o    resolver.o \
+	res_comp.o     res_debug.o    res_mkquery.o  res_send.o
+
+
+ROOTDIR=../../
+LOCINC=
+
+include ../libmake

@@ -1,0 +1,4 @@
+#!/bin/sh
+ln -fs pIrcd pircd
+ln -fs src source
+ln -fs AUTHORS CREDITS

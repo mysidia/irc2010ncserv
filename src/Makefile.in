@@ -1,0 +1,43 @@
+SRCDIR=@top_srcdir@
+INCDIR=@top_srcdir@/include
+
+include Makefile.inc
+BIN=pIrcd
+ROOTDIR=../
+CC=@CC@
+
+.SUFFIXES: .cc .cpp .c .so
+.cc.o: $(INCLUDES)
+	$(CXX)	-c $< $(CFLAGS) $(WALL) -o		$@
+.cpp.o: $(INCLUDES)
+	$(CXX)	-c $< $(CFLAGS) $(WALL) -o		$@
+.c.o: $(INCLUDES)
+	$(CC)	-c $< $(CFLAGS) $(WALL) -o		$@
+.o.so: $(INCLUDES)
+	$(LD)	-shared	$< -o				$@
+
+all: build
+build: libs pIrcd
+
+$(LIBS):
+
+libs:
+	@for i in $(SUBDIRS); do (echo Building $$i...;cd $$i;make all 'CFLAGS=${CFLAGS}' 'INCLUDES=${INCLUDES}' 'INCDIR=../../include'  ); done
+$(BIN): $(OBJS) $(INCLUDES) $(LIBS)
+#	ld $(LIBS) -o pIrcd.lib misc.o -lc -static
+#	ld -static $(LIBS) -o pIrcd.lib /lib/libc.so
+#	$(CC) ./pIrcd.a $(OBJS) $(LDFLAGS) -o $(BIN)
+#	$(CC) $(OBJS) $(LDFLAGS) -o $(BIN)
+#	ar r pIrcd.a $(LIBS)
+#	$(CC) -static $(OBJS) $(LIBS) ./pIrcd.a $(LDFLAGS) -o $(BIN)
+	$(CXX) $(OBJS) $(LIBS) $(LDFLAGS) -o $(BIN)
+	ln -fs pIrcd pircd
+#	$(CC) $(OBJS) $(LIBS) $(LDFLAGS) -o $(BIN)
+
+clean: 
+		@for i in $(SUBDIRS); do (echo Cleaning $$i...;cd $$i;make clean); done
+		rm -f pircd $(BIN) *.o *.so *.obj *~
+
+distclean: clean
+	@rm -f `find ./ -name Makefile`
+	rm -f Makefile

@@ -1,0 +1,10 @@
+SRCDIR=@top_srcdir@
+INCDIR=@top_srcdir@/include
+include ../Makefile.inc
+CC=@CC@
+ROOTDIR=../../
+LIB=port.$(LSUFFIX)
+OBJS=port.o case.o snprintf.o
+LOCINC=port.h tzfile.h
+
+include ../libmake

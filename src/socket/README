@@ -1,0 +1,7 @@
+The purpose of this layer is to take to worrying about the logistics
+of making ircd's sockets work; it's in charge of writing queued output,
+reading input into the queue, handling network buffers, and calling the
+appropriate parsers.
+
+Its primary job is operating ircd's TCP listener ports on which clients and
+servers can connect.

@@ -1,0 +1,17 @@
+SRCDIR=@top_srcdir@
+INCDIR=@top_srcdir@/include
+CC=@CC@
+include src/Makefile.inc
+all:
+	(cd src;make all)
+	@ln -f src/$(BIN) ./$(BIN)
+	@ln -fs $(BIN) ./pircd
+
+clean:
+	(cd src;make clean)
+	rm -f *~ *.o *.obj
+
+distclean:
+	(cd src;make distclean)
+	rm -f *~ *.obj *.o Makefile config.cache config.log config.status
+

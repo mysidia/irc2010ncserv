@@ -1,0 +1,34 @@
+... idea ... discard about server<->server to start
+...> have a 'global registry' composed of databases of
+...> global nick and channel names ie: global 'foo'
+...> (or mappings)
+...> allow multiple channels, nicks with the same names on various
+...> servers but not associated with any global name until authenticated
+...> IOW
+...>
+...> nicks/chans need only be unique per server; local names distinguished
+...> from global names in that local names must be in fully-qualified form.
+...>
+...> /msg foo
+...>
+...> No such nick/channel
+...>
+...> Even if a client `foo' is online and using the current server, unless
+...> they are online with the `global registry'
+...>
+...> /msg foo@realm.server
+...>
+...> addresses foo on realm.server
+...>
+...>
+
+--- Idea for network specification
+
+...> All possible servers are entered in a global registry
+...> All servers have a 'local registry' of servers they know how
+...> to talk to.
+...>
+...> The local registry contains information on which server to talk
+...> to for messages to be posted to some other server.
+...>
+...>

@@ -1,0 +1,10 @@
+SRCDIR=@top_srcdir@
+INCDIR=@top_srcdir@/include
+include ../Makefile.inc
+OBJS=conf.o rehash.o
+LIB=conf.$(LSUFFIX)
+CC=@CC@
+ROOTDIR=../../
+LOCINC=conf.h
+
+include ../libmake

@@ -1,0 +1,8 @@
+conf/         configuration file reading, parsing, and processing
+dns/          domain-name-resolution subsystem
+socket/       creating and holding inbound and outbound network connections
+port/         headers and .c files to make this program more portable
+msgs/         for handling the transmission, receipt, parsing, and processing
+              of server<->server and client messages
+misc/         miscellaneous stuff
+structs/      internal structures

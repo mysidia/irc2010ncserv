@@ -1,0 +1,36 @@
+
+LSUFFIX=obj
+
+
+DLIB=../$(LIB)
+.SUFFIXES: .cc .cpp .c .so
+.cc.o: $(INCLUDES)
+	$(CXX)	-c $< $(CFLAGS) $(WALL) -o                      $@
+.cpp.o: $(INCLUDES)
+	$(CXX)	-c $< $(CFLAGS) $(WALL) -o                      $@
+.c.o: $(INCLUDES)
+	$(CC)	-c $< $(CFLAGS) $(WALL) -o                      $@
+.o.so: $(INCLUDES)
+	$(LD)	-shared	$(OBJS) -o                              $@
+	@ln -f $@ ../$@
+.o.obj: $(INCLUDES)
+	$(LD)	-r	$(OBJS) -o                              $@
+	@ln -f $@ ../$@
+
+all: $(LIB) $(DLIB)
+
+$(OBJS): $(INCLUDES) $(LOCINC)
+#	$(CC) -c $> $(CFLAGS) $(IFLAGS)	-o			$@
+
+$(INCLUDES):
+
+$(DLIB):
+
+
+$(LIB): $(OBJS) $(INCLUDES) $(LOCINC) $(DLIB)
+	$(LD)	-r	$(OBJS) -o                              $@
+	@ln -f $@ @top_srcdir@/src/$@
+
+clean:
+	rm -f *.o $(LIB) *~ *.so *.obj
+

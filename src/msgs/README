@@ -1,0 +1,10 @@
+This layer's duty is to handle the actual parsing of IRC messages
+from both clients and servers.
+
+It is this layer that needs to deal with protocol intracacies and
+extentions with clients.
+
+With servers, only the internal protocol need be supported for now,
+but it would be a plus to leave the possibility open for linking with
+`older servers', however the extentions are very likely to make pIrcd
+fundamentally incompatible with traditional IRC.

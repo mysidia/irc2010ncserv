@@ -1,0 +1,8 @@
+The purpose of the port layer is to take care of the OS-specific things
+that ircd needs to do, that is, they should provide common interfaces
+for the OSes that have non-standard interfaces, so that the rest of the
+code simply ends up calling a port hook rather than the OS' broken
+or non-existent function.
+
+In many cases the routines provided by this layer override the OS routines,
+so hopefully behavior isn't greatly dependent on the particular libc in use.

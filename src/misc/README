@@ -1,0 +1,7 @@
+Eventually this layer should probably be named 'utilities'
+
+The misc layer is for code devices needed throughout ircd, one example is
+the `malloc' routine.
+
+If we move to C++, all mallocs should be changed to use the 'new'
+operator, however

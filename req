@@ -1,0 +1,20 @@
+REQUIREMENTS of pIRCd
+--------------------------------------------------------------------------------------------
+
+             * communications protocol(s) should be completely found within
+               their own library/layer.
+
+             * Even in non-rfc-client mode, the Daemon needs to be
+               mostly compatible with mIRC, ircII, and pIrch; that is,
+               those clients should be capable of functioning, not-
+               necessarily using all the features -- this can be
+               implemented through a 'proxy', however (a program the
+               user needs to run on their computer to make an old client
+               work).
+
+             * pIrcd must implement a distributed, integrated services model
+
+             * pIrcd must implement a distributed database mechanism for
+               nick and channel mapping.
+
+... more to be added ...

@@ -1,0 +1,10 @@
+SRCDIR=@top_srcdir@
+INCDIR=@top_srcdir@/include
+include ../Makefile.inc
+CC=@CC@
+ROOTDIR=../../
+LIB=structs.$(LSUFFIX)
+OBJS=struct.o list.o hash.o
+LOCINC=../../include/hash.h
+
+include ../libmake

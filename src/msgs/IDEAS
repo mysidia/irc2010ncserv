@@ -1,0 +1,62 @@
+msg layer ideas...
+
+All clients on `pIRC' have 3 handles:
+  * Public handles (visible to all servers)
+  * Private handles (visible only to trusted servers)
+  * Secure handles (Password -- encrypted)
+---
+  * The public handle is an id# passed around servers, they
+    are unique only in that two clients won't have the same
+    handle at once.
+  * The private handle is composed of a hash of the secret the
+    public handle, and a 'magic value'.  Private handles are passed
+    to channel servers a user joins, knowledge of the public/private
+    pair is required to pass channel messages to a user and required
+    to tell a user anything about a channel they claim they're on.
+  * The secret handle for an online client is an optional field.
+    If set, then the client's connection may be severed with knowledge
+    of this; until it is explicitly set, the value of the field is
+    random.
+
+    Secret handles are never passed unencrypted over server<->server links,
+    they are known only by the server the user is on; knowledge of the
+    secret handle by a remote is sufficient for any remote to perform any
+    action on a user as though it were trusted.
+
+---
+Synchronization:
+
+   * No synchronization occurs by default
+   * Channels are stored as directories, information of
+     membership is distributed on a `need-to-know' basis
+     and cached only by user-endpoints.
+   * There is no such thing as an 'end-user', only a 'server',
+     'end-user' clients are implemented as servers on which
+     there is exactly one client.
+   * For legacy compat. a local proxy would be sufficient.
+   *    
+
+
+ClientN
+  : Signs on to server
+  : is addressable locally as 'ClientN@servername'
+  : or 'ClientN@<aliastoservername>'
+  :
+  : ClientN can /join #anychannel@<localservername>
+  :
+  : ClientN can /join #anychannel@<chanservername>
+  :    * Where chanservername is listed in the local
+  :      server's registry as both a server and a
+  :      global channel server
+  :
+  :    * A join to a remote channel server will result in the
+  :      channel server receiving the user's "private handle"
+  :
+  :    * If the join is successful then the channel server
+  :      will report the fact that the user handle is now entered
+  :      into the channel.
+  :
+  :    * Channel server will provide a 'status refresh' to the server
+  :      with a list of the `public handles' of all users in the channel
+
+

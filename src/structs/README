@@ -1,0 +1,6 @@
+The job of this layer is to manage the internal structures of the irc daemon,
+particularly the lists of things ircd has to keep track of, user settings,
+the hash table for local users and channels.
+
+Additionally, all routines for handling the 'global registry' currently fall
+under this layer, although they should be in separate layers.

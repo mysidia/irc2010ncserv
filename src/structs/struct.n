@@ -1,0 +1,7133 @@
+# 1 "struct.c"
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+# 1 "../../include/pircd.h" 1
+
+
+
+# 1 "/usr/include/stdio.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+# 1 "/usr/include/features.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+# 1 "/usr/include/sys/cdefs.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1 "/usr/include/features.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 140 "/usr/include/features.h" 3
+
+# 24 "/usr/include/sys/cdefs.h" 2 3
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+# 52 "/usr/include/sys/cdefs.h" 3
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 102 "/usr/include/sys/cdefs.h" 3
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+typedef long double __long_double_t;
+
+# 130 "/usr/include/sys/cdefs.h" 3
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 134 "/usr/include/features.h" 2 3
+
+
+
+
+
+
+
+# 31 "/usr/include/stdio.h" 2 3
+
+
+
+# 1 "/usr/include/libio.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+# 1 "/usr/include/_G_config.h" 1 3
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef long _G_clock_t;
+typedef unsigned short _G_dev_t;
+typedef long int _G_fpos_t;
+typedef unsigned short _G_gid_t;
+typedef unsigned long _G_ino_t;
+typedef unsigned short _G_mode_t;
+typedef unsigned short _G_nlink_t;
+typedef long _G_off_t;
+typedef int _G_pid_t;
+
+
+
+typedef int _G_ptrdiff_t;
+typedef unsigned long _G_sigset_t;
+
+
+
+typedef unsigned int _G_size_t;
+typedef long _G_time_t;
+typedef unsigned short _G_uid_t;
+typedef long int _G_wchar_t;
+typedef int _G_ssize_t;
+typedef int   _G_wint_t;
+typedef void * _G_va_list;
+
+
+
+
+typedef          int   _G_int8_t __attribute__((__mode__(__QI__)));
+typedef unsigned int  _G_uint8_t __attribute__((__mode__(__QI__)));
+typedef          int  _G_int16_t __attribute__((__mode__(__HI__)));
+typedef unsigned int _G_uint16_t __attribute__((__mode__(__HI__)));
+typedef          int  _G_int32_t __attribute__((__mode__(__SI__)));
+typedef unsigned int _G_uint32_t __attribute__((__mode__(__SI__)));
+typedef          int  _G_int64_t __attribute__((__mode__(__DI__)));
+typedef unsigned int _G_uint64_t __attribute__((__mode__(__DI__)));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 30 "/usr/include/libio.h" 2 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 51 "/usr/include/libio.h" 3
+
+
+# 63 "/usr/include/libio.h" 3
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+struct _IO_lock_t {
+  void *ptr;
+  short int field1;
+  short int field2;
+};
+
+ 
+
+struct _IO_jump_t;  struct _IO_FILE;
+
+struct _IO_marker {
+  struct _IO_marker *_next;
+  struct _IO_FILE *_sbuf;
+   
+
+   
+  int _pos;
+# 176 "/usr/include/libio.h" 3
+
+};
+
+
+
+struct _IO_FILE {
+
+
+
+
+
+
+
+  int _flags;		 
+   
+  char* _IO_read_ptr;	 
+  char* _IO_read_end;	 
+  char* _IO_read_base;	 
+
+  char* _IO_write_base;	 
+  char* _IO_write_ptr;	 
+  char* _IO_write_end;	 
+  char* _IO_buf_base;	 
+  char* _IO_buf_end;	 
+   
+  char *_IO_save_base;  
+  char *_IO_backup_base;   
+  char *_IO_save_end;  
+
+  struct _IO_marker *_markers;
+  
+  struct _IO_FILE *_chain;
+  
+  int _fileno;
+  int _blksize;
+  _G_off_t  _offset;
+  
+
+   
+  unsigned short _cur_column;
+  char _unused;
+  char _shortbuf[1];
+  
+   
+
+  struct _IO_lock_t _IO_lock;
+};
+
+
+typedef struct _IO_FILE _IO_FILE;
+
+
+struct _IO_FILE_plus;
+extern struct _IO_FILE_plus _IO_stdin_, _IO_stdout_, _IO_stderr_;
+
+
+
+
+
+
+
+
+extern int __underflow  (_IO_FILE*)  ;
+extern int __uflow  (_IO_FILE*)  ;
+extern int __overflow  (_IO_FILE*, int)  ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+extern int _IO_vfscanf  (_IO_FILE*, const char*, _G_va_list , int*)  ;
+extern int _IO_vfprintf  (_IO_FILE*, const char*, _G_va_list )  ;
+extern _G_ssize_t  _IO_padn  (_IO_FILE *, int, _G_ssize_t )  ;
+extern _G_size_t  _IO_sgetn  (_IO_FILE *, void*, _G_size_t )  ;
+
+extern _G_fpos_t  _IO_seekoff  (_IO_FILE*, _G_off_t , int, int)  ;
+extern _G_fpos_t  _IO_seekpos  (_IO_FILE*, _G_fpos_t , int)  ;
+
+extern void _IO_free_backup_area  (_IO_FILE*)  ;
+
+
+
+
+
+
+# 34 "/usr/include/stdio.h" 2 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+typedef _G_size_t  size_t;
+
+
+
+
+typedef struct _IO_FILE FILE;
+typedef _G_fpos_t  fpos_t;
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+extern FILE *stdin, *stdout, *stderr;
+
+# 104 "/usr/include/stdio.h" 3
+
+
+
+
+
+
+
+
+ 
+
+extern void clearerr  (FILE*)  ;
+extern int fclose  (FILE*)  ;
+extern int feof  (FILE*)  ;
+extern int ferror  (FILE*)  ;
+extern int fflush  (FILE*)  ;
+extern int fgetc  (FILE *)  ;
+extern int fgetpos  (FILE* fp, fpos_t *pos)  ;
+extern char* fgets  (char*, int, FILE*)  ;
+extern FILE* fopen  (__const char*, __const char*)  ;
+extern int fprintf  (FILE*, __const char* format, ...)  ;
+extern int fputc  (int, FILE*)  ;
+extern int fputs  (__const char *str, FILE *fp)  ;
+extern size_t fread  (void*, size_t, size_t, FILE*)  ;
+extern FILE* freopen  (__const char*, __const char*, FILE*)  ;
+extern int fscanf  (FILE *fp, __const char* format, ...)  ;
+extern int fseek  (FILE* fp, long int offset, int whence)  ;
+extern int fsetpos  (FILE* fp, __const fpos_t *pos)  ;
+extern long int ftell  (FILE* fp)  ;
+extern size_t fwrite  (__const void*, size_t, size_t, FILE*)  ;
+extern int getc  (FILE *)  ;
+extern int getchar  (void)  ;
+extern char* gets  (char*)  ;
+extern void perror  (__const char *)  ;
+extern int printf  (__const char* format, ...)  ;
+extern int putc  (int, FILE *)  ;
+extern int putchar  (int)  ;
+extern int puts  (__const char *str)  ;
+extern int remove  (__const char*)  ;
+extern int rename  (__const char* _old, __const char* _new)  ;
+extern void rewind  (FILE*)  ;
+extern int scanf  (__const char* format, ...)  ;
+extern void setbuf  (FILE*, char*)  ;
+extern void setlinebuf  (FILE*)  ;
+extern void setbuffer  (FILE*, char*, int)  ;
+extern int setvbuf  (FILE*, char*, int mode, size_t size)  ;
+extern int sprintf  (char*, __const char* format, ...)  ;
+extern int sscanf  (__const char* string, __const char* format, ...)  ;
+extern FILE* tmpfile  (void)  ;
+extern char* tmpnam  (char*)  ;
+extern int ungetc  (int c, FILE* fp)  ;
+extern int vfprintf  (FILE *fp, char __const *fmt0, _G_va_list)  ;
+extern int vprintf  (char __const *fmt, _G_va_list)  ;
+extern int vsprintf  (char* string, __const char* format, _G_va_list)  ;
+
+
+extern int vfscanf  (FILE*, __const char *, _G_va_list)  ;
+extern int vscanf  (__const char *, _G_va_list)  ;
+extern int vsscanf  (__const char *, __const char *, _G_va_list)  ;
+
+extern int getw  (FILE*)  ;
+extern int putw  (int, FILE*)  ;
+
+extern char* tempnam  (__const char *__dir, __const char *__pfx)  ;
+
+
+
+
+
+extern int sys_nerr;
+extern char *sys_errlist[];
+
+
+extern int _sys_nerr;
+extern char *_sys_errlist[];
+
+ 
+
+ 
+extern void psignal  (int __sig, __const char *__s)  ;
+
+
+
+
+
+
+
+extern _G_ssize_t  getdelim  (char **, size_t *, int, FILE*)  ;
+
+
+
+
+
+extern int snprintf  (char *, size_t, const char *, ...)  ;
+extern int vsnprintf  (char *, size_t, const char *, _G_va_list)  ;
+
+extern int asprintf  (char **, const char *, ...)  ;
+extern int vasprintf  (char **, const char *, _G_va_list)  ;
+
+
+
+extern FILE *fdopen  (int, __const char *)  ;
+extern int fileno  (FILE*)  ;
+extern FILE* popen  (__const char*, __const char*)  ;
+extern int pclose  (FILE*)  ;
+
+
+extern int __underflow  (struct _IO_FILE*)  ;
+extern int __overflow  (struct _IO_FILE*, int)  ;
+
+# 226 "/usr/include/stdio.h" 3
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+# 4 "../../include/pircd.h" 2
+
+# 1 "/usr/include/stdlib.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 1 3
+
+
+
+
+
+ 
+
+
+# 17 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+ 
+
+
+# 59 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+ 
+
+# 129 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+ 
+
+
+# 180 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef long int wchar_t;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+# 288 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 34 "/usr/include/stdlib.h" 2 3
+
+
+ 
+
+
+
+
+
+# 1 "/usr/include/errno.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+# 1 "/usr/include/linux/errno.h" 1 3
+
+
+
+# 1 "/usr/include/asm/errno.h" 1 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 4 "/usr/include/linux/errno.h" 2 3
+
+
+# 14 "/usr/include/linux/errno.h" 3
+
+
+
+# 27 "/usr/include/errno.h" 2 3
+
+
+
+extern int sys_nerr;
+extern char *sys_errlist[];
+
+
+extern int _sys_nerr;
+extern char *_sys_errlist[];
+
+
+ 
+
+extern void	perror  (__const char* __s)  ;
+extern char*	strerror  (int __errno)  ;
+
+
+
+
+
+extern int errno;
+
+
+
+
+
+
+ 
+
+
+# 42 "/usr/include/stdlib.h" 2 3
+
+
+ 
+
+ 
+typedef struct
+  {
+    int quot;			 
+    int rem;			 
+  } div_t;
+
+ 
+typedef struct
+  {
+    long int quot;		 
+    long int rem;		 
+  } ldiv_t;
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+ 
+extern double atof  (__const char *__nptr)  ;
+ 
+extern int atoi  (__const char *__nptr)  ;
+ 
+extern long int atol  (__const char *__nptr)  ;
+
+ 
+extern long long int atoq  (__const char *__nptr)  ;
+
+
+ 
+extern float strtof  (__const char *__nptr, char **__endptr)  ;
+ 
+extern double strtod  (__const char *__nptr, char **__endptr)  ;
+
+ 
+extern __long_double_t strtold  (__const char *__nptr, char **__endptr)  ;
+
+ 
+extern long int strtol  (__const char *__nptr, char **__endptr,
+			     int __base)  ;
+ 
+extern unsigned long int strtoul  (__const char *__nptr,
+				       char **__endptr, int __base)  ;
+
+ 
+extern long long int strtoq  (__const char *__nptr, char **__endptr,
+				int __base)  ;
+ 
+extern unsigned long long int strtouq  (__const char *__nptr,
+					char **__endptr, int __base)  ;
+
+
+ 
+
+
+extern double __strtod_internal (__const char *__nptr,
+				 char **__endptr, int __group);
+extern float __strtof_internal (__const char *__nptr, char **__endptr,
+				int __group);
+extern __long_double_t __strtold_internal (__const char *__nptr,
+					   char **__endptr, int __group);
+extern long int __strtol_internal (__const char *__nptr, char **__endptr,
+				   int __base, int __group);
+extern unsigned long int __strtoul_internal (__const char *__nptr,
+					     char **__endptr, int __base,
+					     int __group);
+
+extern long long int __strtoq_internal (__const char *__nptr, char **__endptr,
+					int __base, int __group);
+extern unsigned long long int __strtouq_internal (__const char *__nptr,
+						  char **__endptr, int __base,
+						  int __group);
+
+
+# 170 "/usr/include/stdlib.h" 3
+
+
+
+ 
+extern int rand  (void)  ;
+ 
+extern void srand  (unsigned int __seed)  ;
+
+ 
+
+
+
+ 
+extern long int __random  (void)  ;
+ 
+extern void __srandom  (unsigned int __seed)  ;
+
+ 
+
+
+
+extern void *  __initstate  (unsigned int __seed, void *  __statebuf,
+				 size_t __statelen)  ;
+ 
+
+extern void *  __setstate  (void *  __statebuf)  ;
+
+
+extern long int random  (void)  ;
+extern void srandom  (unsigned int __seed)  ;
+extern void *  initstate  (unsigned int __seed, void *  __statebuf,
+			       size_t __statelen)  ;
+extern void *  setstate  (void *  __statebuf)  ;
+
+# 214 "/usr/include/stdlib.h" 3
+
+
+
+
+ 
+extern void *  malloc  (size_t __size)  ;
+ 
+
+extern void *  realloc  (void *  __ptr, size_t __size)  ;
+ 
+extern void *  calloc  (size_t __nmemb, size_t __size)  ;
+ 
+extern void free  (void *  __ptr)  ;
+
+
+ 
+extern void cfree  (void *  __ptr)  ;
+
+
+
+# 1 "/usr/include/alloca.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 1 3
+
+
+
+
+
+ 
+
+
+# 17 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+ 
+
+
+# 59 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+ 
+
+# 129 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+ 
+
+
+# 180 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+# 256 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+# 288 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 24 "/usr/include/alloca.h" 2 3
+
+
+ 
+
+ 
+
+
+
+ 
+extern void *  __alloca  (size_t __size)  ;
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+# 234 "/usr/include/stdlib.h" 2 3
+
+
+
+
+ 
+extern void *  valloc  (size_t __size)  ;
+
+
+
+ 
+extern   void abort  (void)  ;
+
+
+ 
+extern int atexit  (void (*__func) (void))  ;
+
+
+ 
+
+extern int on_exit  (void (*__func) (int __status, void *  __arg),
+			 void *  __arg)  ;
+
+
+ 
+
+
+extern   void exit  (int __status)  ;
+
+
+ 
+extern char *getenv  (__const char *__name)  ;
+
+
+ 
+ 
+
+extern int putenv  (__const char *__string)  ;
+
+
+
+ 
+
+extern int setenv  (__const char *__name, __const char *__value,
+			int __replace)  ;
+
+
+ 
+extern int system  (__const char *__command)  ;
+
+
+
+
+ 
+typedef int (*__compar_fn_t)  (__const void * , __const void * )  ;
+
+
+
+typedef __compar_fn_t comparison_fn_t;
+
+
+ 
+
+extern void *  bsearch  (__const void *  __key, __const void *  __base,
+			     size_t __nmemb, size_t __size,
+			     __compar_fn_t __compar)  ;
+
+ 
+
+extern void qsort  (void *  __base, size_t __nmemb, size_t __size,
+			__compar_fn_t __compar)  ;
+
+
+# 314 "/usr/include/stdlib.h" 3
+
+
+ 
+extern   int abs  (int __x)  ;
+extern   long int labs  (long int __x)  ;
+
+
+ 
+
+ 
+extern   div_t div  (int __numer, int __denom)  ;
+extern   ldiv_t ldiv  (long int __numer, long int __denom)  ;
+
+
+ 
+
+extern int mblen  (__const char *__s, size_t __n)  ;
+ 
+
+extern int mbtowc  (wchar_t * __pwc, __const char *__s, size_t __n)  ;
+ 
+
+extern int wctomb  (char *__s, wchar_t __wchar)  ;
+
+
+
+
+
+
+
+ 
+extern size_t mbstowcs  (wchar_t * __pwcs, __const char *__s, size_t __n)  ;
+ 
+extern size_t wcstombs  (char *__s, __const wchar_t * __pwcs, size_t __n)  ;
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+ 
+# 375 "/usr/include/stdlib.h" 3
+
+
+ 
+
+
+extern char **environ;
+extern char **__environ;
+
+extern char*	ecvt  (double __value, size_t __ndigit, int *__decpt,
+			int *__sign)  ;
+extern char*	fcvt  (double __value, size_t __ndigit, int *__decpt,
+			int *__sign)  ;
+extern char*	gcvt  (double __value, size_t __ndigit, char *__buf)  ;
+
+extern double	drand48  (void)  ;
+extern double	erand48  (unsigned short int __xsubi[3])  ;
+extern long int	lrand48  (void)  ;
+extern long int	nrand48  (unsigned short int __xsubi[3])  ;
+extern long int	mrand48  (void)  ;
+extern long int	jrand48  (unsigned short int __xsubi[3])  ;
+extern void	srand48  (long int __seedval)  ;
+extern unsigned short int
+			*seed48  (unsigned short int __seed16v[3])  ;
+extern void	lcong48  (unsigned short int __param[7])  ;
+
+extern int	setenv  (__const char *__name, __const char *__value,
+			int __overwrite)  ;
+extern void	unsetenv  (__const char *__name)  ;
+
+struct qelem {
+  struct qelem *q_forw;
+  struct qelem *q_back;
+  char q_data[1];
+};
+
+extern void insque  (struct qelem *__elem, struct qelem *__prev)  ;
+extern void remque  (struct qelem *__elem)  ;
+
+
+
+ 
+
+
+# 5 "../../include/pircd.h" 2
+
+# 1 "/usr/include/string.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 1 3
+
+
+
+
+
+ 
+
+
+# 17 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+ 
+
+
+# 59 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+ 
+
+# 129 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+ 
+
+
+# 180 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+# 256 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+# 288 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 33 "/usr/include/string.h" 2 3
+
+
+ 
+
+
+
+
+
+
+ 
+
+extern void *  memmove  (void *  __dest, __const void *  __src,
+			     size_t __n)  ;
+
+ 
+
+
+extern void *  __memccpy  (void *  __dest, __const void *  __src,
+			       int __c, size_t __n)  ;
+
+extern void *  memccpy  (void *  __dest, __const void *  __src,
+			     int __c, size_t __n)  ;
+
+
+
+ 
+extern void *  memset  (void *  __s, int __c, size_t __n)  ;
+
+ 
+
+
+
+
+
+
+ 
+extern void *  memchr  (__const void *  __s, int __c, size_t __n)  ;
+
+
+ 
+extern char *strcpy  (char *__dest, __const char *__src)  ;
+ 
+extern char *strncpy  (char *__dest, __const char *__src, size_t __n)  ;
+
+ 
+extern char *strcat  (char *__dest, __const char *__src)  ;
+ 
+extern char *strncat  (char *__dest, __const char *__src, size_t __n)  ;
+
+ 
+extern int strcmp  (__const char *__s1, __const char *__s2)  ;
+ 
+extern int strncmp  (__const char *__s1, __const char *__s2, size_t __n)  ;
+
+ 
+extern int strcoll  (__const char *__s1, __const char *__s2)  ;
+ 
+extern size_t strxfrm  (char *__dest, __const char *__src, size_t __n)  ;
+
+
+ 
+extern char *strdup  (__const char *__s)  ;
+
+
+ 
+extern char *strchr  (__const char *__s, int __c)  ;
+ 
+extern char *strrchr  (__const char *__s, int __c)  ;
+
+ 
+
+extern size_t strcspn  (__const char *__s, __const char *__reject)  ;
+ 
+
+extern size_t strspn  (__const char *__s, __const char *__accept)  ;
+ 
+extern char *strpbrk  (__const char *__s, __const char *__accept)  ;
+ 
+extern char *strstr  (__const char *__haystack, __const char *__needle)  ;
+ 
+extern char *strtok  (char *__s, __const char *__delim)  ;
+
+
+ 
+
+
+extern void *  memmem  (__const void *  __haystack,
+			    size_t __haystacklen,
+			    __const void *  __needle,
+			    size_t __needlelen)  ;
+
+
+ 
+extern size_t strlen  (__const char *__s)  ;
+
+ 
+extern char *strerror  (int __errnum)  ;
+
+
+ 
+extern char *index  (__const char *__s, int __c)  ;
+
+ 
+extern char *rindex  (__const char *__s, int __c)  ;
+
+# 149 "/usr/include/string.h" 3
+
+
+ 
+extern void bcopy  (__const void *  __src, void *  __dest, int __n)  ;
+
+ 
+extern void bzero  (void *  __s, int __n)  ;
+
+ 
+extern int bcmp  (__const void *  __s1, __const void *  __s2, int __n)  ;
+
+
+
+ 
+
+extern int ffs  (int __i)  ;
+
+ 
+extern int strcasecmp  (__const char *__s1, __const char *__s2)  ;
+
+ 
+
+extern char *strsep  (char **__stringp, __const char *__delim)  ;
+
+
+
+ 
+extern int strncasecmp  (__const char *__s1, __const char *__s2,
+			     size_t __n)  ;
+
+ 
+extern char *strsignal  (int __sig)  ;
+
+ 
+extern char *stpcpy  (char *__dest, __const char *__src)  ;
+
+ 
+
+extern char *__stpncpy  (char *__dest, __const char *__src, size_t __n)  ;
+extern char *stpncpy  (char *__dest, __const char *__src, size_t __n)  ;
+
+ 
+extern char *strfry  (char *__string)  ;
+
+ 
+extern void *  memfrob  (void *  __s, size_t __n)  ;
+
+extern void swab  (__const void *  __from, void *  __to,
+                        size_t __nbytes)  ;
+
+
+ 
+
+
+# 6 "../../include/pircd.h" 2
+
+# 1 "/usr/include/fcntl.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+# 1 "/usr/include/sys/types.h" 1 3
+
+
+
+# 1 "/usr/include/linux/types.h" 1 3
+
+
+
+# 1 "/usr/include/linux/posix_types.h" 1 3
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef struct {
+	unsigned long fds_bits [(1024 / (8 * sizeof(unsigned long)) ) ];
+} __kernel_fd_set;
+
+# 1 "/usr/include/asm/posix_types.h" 1 3
+
+
+
+ 
+
+
+
+
+
+typedef unsigned short	__kernel_dev_t;
+typedef unsigned long	__kernel_ino_t;
+typedef unsigned short	__kernel_mode_t;
+typedef unsigned short	__kernel_nlink_t;
+typedef long		__kernel_off_t;
+typedef int		__kernel_pid_t;
+typedef unsigned short	__kernel_uid_t;
+typedef unsigned short	__kernel_gid_t;
+typedef unsigned int	__kernel_size_t;
+typedef int		__kernel_ssize_t;
+typedef int		__kernel_ptrdiff_t;
+typedef long		__kernel_time_t;
+typedef long		__kernel_clock_t;
+typedef int		__kernel_daddr_t;
+typedef char *		__kernel_caddr_t;
+
+
+typedef long long	__kernel_loff_t;
+
+
+typedef struct {
+
+
+
+	int	__val[2];
+
+} __kernel_fsid_t;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 48 "/usr/include/linux/posix_types.h" 2 3
+
+
+
+# 4 "/usr/include/linux/types.h" 2 3
+
+# 1 "/usr/include/asm/types.h" 1 3
+
+
+
+typedef unsigned short umode_t;
+
+ 
+
+
+
+
+typedef __signed__ char __s8;
+typedef unsigned char __u8;
+
+typedef __signed__ short __s16;
+typedef unsigned short __u16;
+
+typedef __signed__ int __s32;
+typedef unsigned int __u32;
+
+
+typedef __signed__ long long __s64;
+typedef unsigned long long __u64;
+
+
+ 
+
+
+# 42 "/usr/include/asm/types.h" 3
+
+
+
+# 5 "/usr/include/linux/types.h" 2 3
+
+
+
+
+typedef __kernel_fd_set		fd_set;
+typedef __kernel_dev_t		dev_t;
+typedef __kernel_ino_t		ino_t;
+typedef __kernel_mode_t		mode_t;
+typedef __kernel_nlink_t	nlink_t;
+typedef __kernel_off_t		off_t;
+typedef __kernel_pid_t		pid_t;
+typedef __kernel_uid_t		uid_t;
+typedef __kernel_gid_t		gid_t;
+typedef __kernel_daddr_t	daddr_t;
+
+
+typedef __kernel_loff_t		loff_t;
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+typedef __kernel_ssize_t	ssize_t;
+
+
+
+
+typedef __kernel_ptrdiff_t	ptrdiff_t;
+
+
+
+
+typedef __kernel_time_t		time_t;
+
+
+
+
+typedef __kernel_clock_t	clock_t;
+
+
+
+
+typedef __kernel_caddr_t	caddr_t;
+
+
+ 
+typedef unsigned char		u_char;
+typedef unsigned short		u_short;
+typedef unsigned int		u_int;
+typedef unsigned long		u_long;
+
+ 
+typedef unsigned char		unchar;
+typedef unsigned short		ushort;
+typedef unsigned int		uint;
+typedef unsigned long		ulong;
+
+
+
+ 
+
+
+
+
+struct ustat {
+	__kernel_daddr_t	f_tfree;
+	__kernel_ino_t		f_tinode;
+	char			f_fname[6];
+	char			f_fpack[6];
+};
+
+
+# 4 "/usr/include/sys/types.h" 2 3
+
+# 1 "/usr/include/sys/bitypes.h" 1 3
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+	 
+
+
+
+	typedef   char            int8_t;
+	typedef unsigned char            u_int8_t;
+	typedef short                     int16_t;
+	typedef unsigned short          u_int16_t;
+	typedef int                       int32_t;
+	typedef unsigned int            u_int32_t;
+
+
+	typedef long long                 int64_t;
+	typedef unsigned long long      u_int64_t;
+
+
+
+
+ 
+# 5 "/usr/include/sys/types.h" 2 3
+
+
+
+
+
+
+
+
+
+
+ 
+typedef unsigned long fd_mask;
+
+
+# 27 "/usr/include/fcntl.h" 2 3
+
+# 1 "/usr/include/gnu/types.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+typedef unsigned char __u_char;
+typedef unsigned short __u_short;
+typedef unsigned int __u_int;
+typedef unsigned long __u_long;
+typedef struct
+{
+  long val[2];
+} __quad;
+typedef struct
+{
+  __u_long val[2];
+} __u_quad;
+
+
+typedef unsigned short __dev_t;	 
+typedef unsigned short __gid_t;	 
+typedef unsigned short __uid_t;	 
+typedef unsigned short __mode_t; 
+typedef long	__daddr_t;	 
+typedef long	__off_t;	 
+typedef long long __loff_t;	 
+typedef unsigned long __ino_t;	 
+typedef unsigned short __nlink_t;	 
+typedef long	__time_t;
+# 59 "/usr/include/gnu/types.h" 3
+
+
+typedef int __pid_t;		 
+typedef int __ssize_t;		 
+typedef __quad __fsid_t;	 
+
+ 
+typedef char *__caddr_t;
+typedef long int __swblk_t;	 
+
+
+ 
+
+
+
+
+
+
+
+typedef struct __fd_set {
+        unsigned long fds_bits [(1024 / (8 * sizeof(unsigned long)) ) ];
+} __fd_set;
+
+
+# 110 "/usr/include/gnu/types.h" 3
+
+
+# 134 "/usr/include/gnu/types.h" 3
+
+
+
+# 28 "/usr/include/fcntl.h" 2 3
+
+# 1 "/usr/include/linux/fcntl.h" 1 3
+
+
+
+# 1 "/usr/include/asm/fcntl.h" 1 3
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+struct flock {
+	short l_type;
+	short l_whence;
+	off_t l_start;
+	off_t l_len;
+	pid_t l_pid;
+};
+
+
+# 4 "/usr/include/linux/fcntl.h" 2 3
+
+
+
+# 29 "/usr/include/fcntl.h" 2 3
+
+
+
+
+
+
+ 
+
+ 
+
+
+extern int creat  (__const char * __filename, mode_t __mode)  ;
+
+ 
+
+extern int fcntl  (int __fildes,int __cmd, ...)  ;
+extern int __fcntl  (int __fildes,int __cmd, ...)  ;
+
+ 
+
+
+extern int open  (__const char * __filename, int __flags, ...)  ;
+extern int __open  (__const char * __filename, int __flags, ...)  ;
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+extern int lockf  (int __fd, int __cmd, __off_t __len)  ;
+
+
+ 
+
+
+# 7 "../../include/pircd.h" 2
+
+# 1 "/usr/include/unistd.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+# 1 "/usr/include/linux/rootflags.h" 1 3
+
+
+
+typedef unsigned long rootflag_t;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 27 "/usr/include/unistd.h" 2 3
+
+
+ 
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1 "/usr/include/posix_opt.h" 1 3
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+# 86 "/usr/include/unistd.h" 2 3
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 1 3
+
+
+
+
+
+ 
+
+
+# 17 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+ 
+
+
+# 59 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+ 
+
+# 129 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+ 
+
+
+# 180 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+# 256 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+ 
+
+# 288 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stddef.h" 3
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 105 "/usr/include/unistd.h" 2 3
+
+
+
+ 
+
+
+
+
+
+
+ 
+extern int __access  (__const char *__name, int __type)  ;
+extern int access  (__const char *__name, int __type)  ;
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+extern __off_t __lseek  (int __fd, __off_t __offset, int __whence)  ;
+extern __off_t lseek  (int __fd, __off_t __offset, int __whence)  ;
+
+
+ 
+extern __loff_t __llseek  (int __fd, __loff_t __offset, int __whence)  ;
+extern __loff_t llseek  (int __fd, __loff_t __offset, int __whence)  ;
+
+
+ 
+extern int __close  (int __fd)  ;
+extern int close  (int __fd)  ;
+
+ 
+
+extern ssize_t __read  (int __fd, void *  __buf, size_t __nbytes)  ;
+extern ssize_t read  (int __fd, void *  __buf, size_t __nbytes)  ;
+
+ 
+extern ssize_t __write  (int __fd, __const void *  __buf, size_t __n)  ;
+extern ssize_t write  (int __fd, __const void *  __buf, size_t __n)  ;
+
+
+ 
+
+
+
+extern int __pipe  (int __pipedes[2])  ;
+extern int pipe  (int __pipedes[2])  ;
+
+ 
+
+
+
+
+
+
+extern unsigned int alarm  (unsigned int __seconds)  ;
+
+ 
+
+
+
+
+
+
+extern unsigned int sleep  (unsigned int __seconds)  ;
+
+
+ 
+
+extern int pause  (void)  ;
+
+
+ 
+extern int __chown  (__const char *__file,
+			 __uid_t __owner, __gid_t __group)  ;
+extern int chown  (__const char *__file,
+		       __uid_t __owner, __gid_t __group)  ;
+
+
+ 
+extern int __fchown  (int __fd,
+			  __uid_t __owner, __gid_t __group)  ;
+extern int fchown  (int __fd,
+			__uid_t __owner, __gid_t __group)  ;
+ 
+
+extern int __fchdir  (int __fd)  ;
+extern int fchdir  (int __fd)  ;
+
+
+ 
+extern int __chdir  (__const char *__path)  ;
+extern int chdir  (__const char *__path)  ;
+
+ 
+
+
+
+
+
+
+extern char *getcwd  (char *__buf, size_t __size)  ;
+
+
+ 
+
+
+extern char *get_current_dir_name  (void)  ;
+
+
+
+ 
+
+
+extern char *getwd  (char __buf [])  ;
+
+
+
+ 
+extern int __dup  (int __fd)  ;
+extern int dup  (int __fd)  ;
+
+ 
+extern int __dup2  (int __fd, int __fd2)  ;
+extern int dup2  (int __fd, int __fd2)  ;
+
+ 
+extern char **__environ;
+extern char **environ;
+
+
+ 
+
+extern int __execve  (__const char *__path, char *__const __argv[],
+			  char *__const __envp[])  ;
+extern int execve  (__const char *__path, char *__const __argv[],
+			char *__const __envp[])  ;
+
+ 
+extern int execv  (__const char *__path, char *__const __argv[])  ;
+
+ 
+
+extern int execle  (__const char *__path, __const char *__arg,...)  ;
+
+ 
+
+extern int execl  (__const char *__path, __const char *__arg,...)  ;
+
+ 
+
+extern int execvp  (__const char *__file, char *__const __argv[])  ;
+
+ 
+
+
+extern int execlp  (__const char *__file, __const char *arg,...)  ;
+
+
+ 
+extern   void _exit  (int __status)   __attribute__ ((noreturn)) ;
+
+
+ 
+
+
+
+# 1 "/usr/include/confname.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+enum
+  {
+    _PC_LINK_MAX
+
+
+
+    ,
+    _PC_MAX_CANON,
+    _PC_MAX_INPUT,
+    _PC_NAME_MAX,
+    _PC_PATH_MAX,
+    _PC_PIPE_BUF,
+
+    _PC_CHOWN_RESTRICTED,
+
+    _PC_NO_TRUNC,
+    _PC_VDISABLE,
+
+
+
+
+     
+    _PC_ASYNC_IO,
+    _PC_PRIO_IO,
+    _PC_SYNC_IO
+  };
+
+ 
+enum
+  {
+    _SC_ARG_MAX
+
+
+
+    ,
+    _SC_CHILD_MAX,
+    _SC_CLK_TCK,
+    _SC_NGROUPS_MAX,
+    _SC_OPEN_MAX,
+
+
+    _SC_STREAM_MAX,
+    _SC_TZNAME_MAX,
+
+    _SC_JOB_CONTROL,
+    _SC_SAVED_IDS,
+    _SC_VERSION,
+
+
+
+
+    _SC_PAGESIZE,
+
+
+
+
+
+     
+
+    _SC_BC_BASE_MAX,
+    _SC_BC_DIM_MAX,
+    _SC_BC_SCALE_MAX,
+    _SC_BC_STRING_MAX,
+    _SC_COLL_WEIGHTS_MAX,
+    _SC_EQUIV_CLASS_MAX,
+    _SC_EXPR_NEST_MAX,
+    _SC_LINE_MAX,
+    _SC_RE_DUP_MAX,
+
+    _SC_2_VERSION,
+    _SC_2_C_BIND,
+    _SC_2_C_DEV,
+    _SC_2_FORT_DEV,
+    _SC_2_FORT_RUN,
+    _SC_2_SW_DEV,
+    _SC_2_LOCALEDEF,
+
+     
+    _SC_AIO_LISTIO_MAX,
+    _SC_AIO_MAX,
+    _SC_AIO_PRIO_DELTA_MAX,
+    _SC_DELAYTIMER_MAX,
+    _SC_MQ_OPEN_MAX,
+    _SC_MQ_PRIO_MAX,
+    _SC_RTSIG_MAX,
+    _SC_SEM_NSEMS_MAX,
+    _SC_SEM_VALUE_MAX,
+    _SC_SIGQUEUE_MAX,
+    _SC_TIMER_MAX,
+    _SC_ASYNCHRONOUS_IO,
+    _SC_FSYNC,
+    _SC_MAPPED_FILES,
+    _SC_MEMLOCK,
+    _SC_MEMLOCK_RANGE,
+    _SC_MEMORY_PROTECTION,
+    _SC_MESSAGE_PASSING,
+    _SC_PRIORITIZED_IO,
+    _SC_PRIORITY_SCHEDULING,
+    _SC_REALTIME_SIGNALS,
+    _SC_SEMAPHORES,
+    _SC_SHARED_MEMORY_OBJECTS,
+    _SC_SYNCHRONIZED_IO,
+    _SC_TIMERS
+  };
+
+
+ 
+enum
+  {
+    _CS_PATH			 
+  };
+
+
+
+# 281 "/usr/include/unistd.h" 2 3
+
+
+ 
+extern long int __pathconf  (__const char *__path, int __name)  ;
+extern long int pathconf  (__const char *__path, int __name)  ;
+
+ 
+extern long int __fpathconf  (int __fd, int __name)  ;
+extern long int fpathconf  (int __fd, int __name)  ;
+
+
+ 
+extern long int __sysconf  (int __name)  ;
+extern long int sysconf  (int __name)  ;
+
+
+ 
+extern size_t confstr  (int __name, char *__buf, size_t __len)  ;
+
+
+
+ 
+extern __pid_t __getpid  (void)  ;
+extern __pid_t getpid  (void)  ;
+
+ 
+extern __pid_t __getppid  (void)  ;
+extern __pid_t getppid  (void)  ;
+
+
+
+ 
+
+
+extern __pid_t getpgid  (__pid_t __pid)  ;
+
+ 
+extern __pid_t getpgrp  (void)  ;
+
+ 
+
+
+extern int setpgid  (__pid_t __pid, __pid_t __pgid)  ;
+
+extern int setpgrp  (void)  ;
+
+# 351 "/usr/include/unistd.h" 3
+
+
+ 
+
+
+extern __pid_t __setsid  (void)  ;
+extern __pid_t setsid  (void)  ;
+
+extern __pid_t __getsid  (__pid_t __pid)  ;
+extern __pid_t getsid  (__pid_t __pid)  ;
+
+ 
+extern __uid_t __getuid  (void)  ;
+extern __uid_t getuid  (void)  ;
+
+ 
+extern __uid_t __geteuid  (void)  ;
+extern __uid_t geteuid  (void)  ;
+
+ 
+extern __gid_t __getgid  (void)  ;
+extern __gid_t getgid  (void)  ;
+
+ 
+extern __gid_t __getegid  (void)  ;
+extern __gid_t getegid  (void)  ;
+
+ 
+
+
+extern int __getgroups  (int __size, __gid_t __list[])  ;
+extern int getgroups  (int __size, __gid_t __list[])  ;
+
+ 
+
+
+
+extern int __setuid  (__uid_t __uid)  ;
+extern int setuid  (__uid_t __uid)  ;
+
+
+ 
+
+extern int __setreuid  (__uid_t __ruid, __uid_t __euid)  ;
+extern int setreuid  (__uid_t __ruid, __uid_t __euid)  ;
+
+ 
+extern int seteuid  (__uid_t __uid)  ;
+
+
+ 
+
+
+
+extern int __setgid  (__gid_t __gid)  ;
+extern int setgid  (__gid_t __gid)  ;
+
+
+ 
+
+extern int __setregid  (__gid_t __rgid, __gid_t __egid)  ;
+extern int setregid  (__gid_t __rgid, __gid_t __egid)  ;
+
+ 
+extern int setegid  (__uid_t __uid)  ;
+
+
+ 
+extern int __setfsuid  (__uid_t __uid)  ;
+extern int setfsuid  (__uid_t __uid)  ;
+
+ 
+extern int __setfsgid  (__gid_t __gid)  ;
+extern int setfsgid  (__gid_t __gid)  ;
+
+
+ 
+
+
+extern __pid_t __fork  (void)  ;
+extern __pid_t fork  (void)  ;
+
+
+ 
+
+
+
+extern __pid_t __vfork  (void)  ;
+extern __pid_t vfork  (void)  ;
+
+
+
+ 
+extern char *cuserid  (char * __buf)  ;
+
+ 
+extern char *ctermid  (char *__buf)  ;
+
+ 
+
+extern char *ttyname  (int __fd)  ;
+
+ 
+
+extern int __isatty  (int __fd)  ;
+extern int isatty  (int __fd)  ;
+
+
+ 
+extern int __link  (__const char *__from, __const char *__to)  ;
+extern int link  (__const char *__from, __const char *__to)  ;
+
+
+ 
+extern int __symlink  (__const char *__from, __const char *__to)  ;
+extern int symlink  (__const char *__from, __const char *__to)  ;
+
+ 
+
+
+extern int __readlink  (__const char *__path, char *__buf, size_t __len)  ;
+extern int readlink  (__const char *__path, char *__buf, size_t __len)  ;
+
+
+
+ 
+extern int __unlink  (__const char *__name)  ;
+extern int unlink  (__const char *__name)  ;
+
+ 
+extern int __rmdir  (__const char *__path)  ;
+extern int rmdir  (__const char *__path)  ;
+
+
+ 
+extern __pid_t tcgetpgrp  (int __fd)  ;
+
+ 
+extern int tcsetpgrp  (int __fd, __pid_t __pgrp_id)  ;
+
+
+ 
+extern char *getlogin  (void)  ;
+
+
+ 
+extern int setlogin  (__const char *__name)  ;
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern int getopt  (int __argc, char *__const * __argv,
+			__const char *__opts)  ;
+extern int opterr;
+extern int optind;
+extern int optopt;
+extern char *optarg;
+
+
+
+
+
+ 
+
+
+extern int __gethostname  (char *__name, size_t __len)  ;
+extern int gethostname  (char *__name, size_t __len)  ;
+
+ 
+
+extern int sethostname  (__const char *__name, size_t __len)  ;
+
+ 
+extern long int gethostid  (void)  ;
+
+ 
+
+extern int sethostid  (long int __id)  ;
+
+
+ 
+
+extern size_t __getpagesize  (void)  ;
+extern size_t getpagesize  (void)  ;
+
+
+ 
+
+extern int __getdtablesize  (void)  ;
+extern int getdtablesize  (void)  ;
+
+ 
+
+extern int fdatasync  (int __fd)  ;
+
+ 
+extern int fsync  (int __fd)  ;
+
+ 
+extern int sync  (void)  ;
+
+
+ 
+
+
+extern int vhangup  (void)  ;
+
+
+ 
+
+
+extern int acct  (__const char *__name)  ;
+
+ 
+
+extern int chroot  (__const char *__path)  ;
+
+ 
+
+extern int swapon  (__const char *__path)  ;
+
+ 
+extern char *getusershell  (void)  ;
+extern void endusershell  (void)  ;  
+extern void setusershell  (void)  ;  
+
+ 
+
+extern char *getpass  (__const char *__prompt)  ;
+
+
+
+# 622 "/usr/include/unistd.h" 3
+
+
+
+
+ 
+
+
+extern int	__brk  (void* __end_data_segment)  ;
+extern int	brk  (void* __end_data_segment)  ;
+extern void*	__sbrk  (ptrdiff_t __increment)  ;
+extern void*	sbrk  (ptrdiff_t __increment)  ;
+
+extern char*	crypt  (__const char *__key, __const char *__salt)  ;
+extern void	encrypt  (char __block[64], int __edflag)  ;
+extern void	setkey  (__const char *__key)  ;
+
+extern int	ftruncate  (int __fildes, size_t __length)  ;
+extern int	truncate  (__const char *__path, size_t __length)  ;
+
+extern int	ioperm   (unsigned long __from,
+			unsigned long __num, int __turn_on)  ;
+extern int	iopl  (int __level)  ;
+
+extern char*	mktemp  (char *__template)  ;
+extern int	mkstemp  (char *__template)  ;
+
+extern int	nice  (int __val)  ;
+
+extern int	profil  (char *__buf, int __bufsiz, int __offset,
+			int __scale)  ;
+
+extern void	usleep  (unsigned long __usec)  ;
+
+
+
+extern int	_xustat  (int __ver, dev_t __dev, struct ustat* __ubuf)  ;
+static __inline__ int
+ustat (dev_t __dev, struct ustat* __ubuf)
+{
+  return _xustat (1 , __dev, __ubuf);
+}
+
+extern int	idle  (void)  ;
+extern int	reboot  (int __magic, int __magic_too,
+			int __flag)  ;
+
+extern int	swapoff  (__const char * __specialfile)  ;
+
+extern int	uselib  (__const char *__filename)  ;
+
+extern int	getdomainname  (char *__name, size_t __len)  ;
+extern int	setdomainname  (__const char *__name, size_t __len)  ;
+extern char*	realpath  (__const char *__path,
+			char __resolved_path [])  ;
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+# 8 "../../include/pircd.h" 2
+
+# 1 "/usr/include/sys/ioctl.h" 1 3
+
+
+
+# 1 "/usr/include/linux/ioctl.h" 1 3
+
+
+
+# 1 "/usr/include/asm/ioctl.h" 1 3
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+# 4 "/usr/include/linux/ioctl.h" 2 3
+
+
+
+
+# 4 "/usr/include/sys/ioctl.h" 2 3
+
+
+# 1 "/usr/include/termios.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+# 1 "/usr/include/linux/termios.h" 1 3
+
+
+
+
+# 1 "/usr/include/asm/termios.h" 1 3
+
+
+
+# 1 "/usr/include/asm/termbits.h" 1 3
+
+
+
+
+
+typedef unsigned char	cc_t;
+typedef unsigned int	speed_t;
+typedef unsigned int	tcflag_t;
+
+
+struct termios {
+	tcflag_t c_iflag;		 
+	tcflag_t c_oflag;		 
+	tcflag_t c_cflag;		 
+	tcflag_t c_lflag;		 
+	cc_t c_line;			 
+	cc_t c_cc[19 ];		 
+};
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+# 4 "/usr/include/asm/termios.h" 2 3
+
+# 1 "/usr/include/asm/ioctls.h" 1 3
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+# 5 "/usr/include/asm/termios.h" 2 3
+
+
+struct winsize {
+	unsigned short ws_row;
+	unsigned short ws_col;
+	unsigned short ws_xpixel;
+	unsigned short ws_ypixel;
+};
+
+
+struct termio {
+	unsigned short c_iflag;		 
+	unsigned short c_oflag;		 
+	unsigned short c_cflag;		 
+	unsigned short c_lflag;		 
+	unsigned char c_line;		 
+	unsigned char c_cc[8 ];	 
+};
+
+# 32 "/usr/include/asm/termios.h" 3
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+# 89 "/usr/include/asm/termios.h" 3
+
+
+
+# 5 "/usr/include/linux/termios.h" 2 3
+
+
+
+# 28 "/usr/include/termios.h" 2 3
+
+
+ 
+
+# 58 "/usr/include/termios.h" 3
+
+
+
+ 
+extern speed_t cfgetispeed  (struct termios *__termios_p)  ;
+
+ 
+extern speed_t cfgetospeed  (struct termios *__termios_p)  ;
+
+
+ 
+extern void cfmakeraw   (struct termios *__t)  ;
+
+ 
+extern int cfsetispeed  (struct termios *__termios_p,
+		speed_t __speed)  ;
+
+ 
+extern int cfsetospeed  (struct termios *__termios_p,
+		speed_t __speed)  ;
+
+
+ 
+extern int tcdrain  (int __fildes)  ;
+
+ 
+
+extern int tcflow  (int __fildes, int __action)  ;
+
+ 
+
+extern int tcflush  (int __fildes, int __queue_selector)  ;
+
+ 
+extern pid_t tcgetpgrp  (int __fildes)  ;
+
+ 
+extern int tcgetattr  (int __fildes, struct termios *__termios_p)  ;
+extern int __tcgetattr  (int __fildes, struct termios *__termios_p)  ;
+
+ 
+extern int tcsendbreak  (int __fildes, int __duration)  ;
+
+ 
+
+extern int tcsetattr  (int __fildes, int __optional_actions,
+	struct termios *__termios_p)  ;
+
+ 
+extern int tcsetpgrp  (int __fildes, pid_t __pgrp_id)  ;
+
+ 
+
+
+# 6 "/usr/include/sys/ioctl.h" 2 3
+
+# 1 "/usr/include/sys/socketio.h" 1 3
+# 1 "/usr/include/linux/sockios.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1 "/usr/include/asm/sockios.h" 1 3
+
+
+
+ 
+
+
+
+
+
+
+
+
+# 21 "/usr/include/linux/sockios.h" 2 3
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+# 1 "/usr/include/sys/socketio.h" 2 3
+
+# 7 "/usr/include/sys/ioctl.h" 2 3
+
+
+ 
+
+extern int	ioctl  (int __fildes, int __cmd, ...)  ;
+extern int	__ioctl  (int __fildes, int __cmd, ...)  ;
+
+ 
+
+
+
+# 9 "../../include/pircd.h" 2
+
+# 1 "/usr/include/sys/stat.h" 1 3
+
+
+
+
+
+
+
+# 1 "/usr/include/linux/stat.h" 1 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 8 "/usr/include/sys/stat.h" 2 3
+
+
+
+
+
+
+
+ 
+
+
+
+struct stat {
+	dev_t		st_dev;
+
+
+
+
+	unsigned short __pad1;
+
+
+	ino_t		st_ino;
+	umode_t		st_mode;
+	nlink_t		st_nlink;
+	uid_t		st_uid;
+	gid_t		st_gid;
+	dev_t		st_rdev;
+
+
+
+
+	unsigned short __pad2;
+
+
+	off_t		st_size;
+
+# 56 "/usr/include/sys/stat.h" 3
+
+	unsigned long	st_blksize;
+	unsigned long	st_blocks;
+	time_t		st_atime;
+	unsigned long	__unused1;
+	time_t		st_mtime;
+	unsigned long	__unused2;
+	time_t		st_ctime;
+	unsigned long	__unused3;
+	unsigned long	__unused4;
+	unsigned long	__unused5;
+
+};
+
+
+
+
+
+extern int _fxstat  (int __ver, int __fildes,
+			struct stat *__stat_buf)  ;
+
+extern int _xstat  (int __ver, __const char *__filename,
+			struct stat *__stat_buf)  ;
+
+extern int _lxstat  (int __ver, __const char *__filename,
+			struct stat *__stat_buf)  ;
+
+extern int _xmknod  (int __ver, __const char *__path,
+			mode_t __mode, dev_t *__dev)  ;
+
+ 
+
+
+
+
+extern int	__chmod  (__const char *__path, mode_t __mode)  ;
+extern int	chmod  (__const char *__path, mode_t __mode)  ;
+
+extern int	__fchmod  (int __fildes, mode_t __mode)  ;
+extern int	fchmod  (int __fildes, mode_t __mode)  ;
+
+extern int	__mkdir  (__const char *__path, mode_t __mode)  ;
+extern int	mkdir  (__const char *__path, mode_t __mode)  ;
+
+extern int	mkfifo  (__const char *__path, mode_t __mode)  ;
+
+# 121 "/usr/include/sys/stat.h" 3
+
+
+extern mode_t	__umask  (mode_t __mask)  ;
+extern mode_t	umask  (mode_t __mask)  ;
+
+ 
+
+static __inline__ int __stat(__const char * __path, struct stat * __statbuf)
+{
+  return _xstat(1 , __path, __statbuf);
+}
+
+static __inline__ int stat(__const char * __path, struct stat * __statbuf)
+{
+  return _xstat(1 , __path, __statbuf);
+}
+
+static __inline__ int __lstat(__const char * __path, struct stat * __statbuf)
+{
+  return _lxstat(1 , __path, __statbuf);
+}
+
+static __inline__ int lstat(__const char * __path, struct stat * __statbuf)
+{
+  return _lxstat(1 , __path, __statbuf);
+}
+
+static __inline__ int __fstat(int __fd, struct stat * __statbuf)
+{
+  return _fxstat(1 , __fd, __statbuf);
+}
+
+static __inline__ int fstat(int __fd, struct stat * __statbuf)
+{
+  return _fxstat(1 , __fd, __statbuf);
+}
+
+static __inline__ int __mknod(__const char * __path, mode_t __mode, dev_t __dev)
+{
+  return _xmknod(1 , __path, __mode, &__dev);
+}
+
+static __inline__ int mknod(__const char * __path, mode_t __mode, dev_t __dev)
+{
+  return _xmknod(1 , __path, __mode, &__dev);
+}
+
+# 184 "/usr/include/sys/stat.h" 3
+
+
+
+# 10 "../../include/pircd.h" 2
+
+# 1 "/usr/include/sys/time.h" 1 3
+
+
+
+
+
+# 1 "/usr/include/linux/time.h" 1 3
+
+
+
+
+
+struct timespec {
+	long	tv_sec;		 
+	long	tv_nsec;	 
+};
+
+
+struct timeval {
+	int	tv_sec;		 
+	int	tv_usec;	 
+};
+
+struct timezone {
+	int	tz_minuteswest;	 
+	int	tz_dsttime;	 
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+struct  itimerspec {
+        struct  timespec it_interval;     
+        struct  timespec it_value;        
+};
+
+struct	itimerval {
+	struct	timeval it_interval;	 
+	struct	timeval it_value;	 
+};
+
+
+# 6 "/usr/include/sys/time.h" 2 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+# 1 "/usr/include/time.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+# 1 "/usr/include/sys/time.h" 1 3
+# 81 "/usr/include/sys/time.h" 3
+
+# 27 "/usr/include/time.h" 2 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct tm {
+	int tm_sec;
+	int tm_min;
+	int tm_hour;
+	int tm_mday;
+	int tm_mon;
+	int tm_year;
+	int tm_wday;
+	int tm_yday;
+	int tm_isdst;
+	 
+	long int __tm_gmtoff__;
+	__const char *__tm_zone__;
+};
+
+
+
+
+extern char *tzname[2];
+extern int daylight;
+extern long int timezone;
+
+ 
+
+extern int	stime  (time_t* __tptr)  ;
+
+extern clock_t	clock  (void)  ;
+extern time_t	time  (time_t * __tp)  ;
+extern   double difftime  (time_t __time2,
+					  time_t __time1)   __attribute__ ((const)) ;
+extern time_t	mktime  (struct tm * __tp)  ;
+
+extern char *	asctime  (__const struct tm * __tp)  ;
+extern char *	ctime  (__const time_t * __tp)  ;
+extern size_t	strftime  (char * __s, size_t __smax,
+			__const char * __fmt, __const struct tm * __tp)  ;
+extern char *	strptime  (char * __s, __const char * __fmt,
+			struct tm * __tm)  ;
+
+extern void	tzset  (void)  ;
+
+extern struct tm*	gmtime  (__const time_t *__tp)  ;
+extern struct tm*	localtime  (__const time_t * __tp)  ;
+
+
+ 
+
+
+ 
+extern time_t timegm  (struct tm *__tp)  ;
+    
+ 
+extern time_t timelocal  (struct tm *__tp)  ;
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+extern int nanosleep  (const struct timespec *__rqtp,
+		struct timespec *__rmtp)  ;
+
+ 
+
+
+# 39 "/usr/include/sys/time.h" 2 3
+
+
+
+ 
+
+extern int	__gettimeofday  (struct timeval * __tp,
+			struct timezone * __tz)  ;
+extern int	gettimeofday  (struct timeval * __tp,
+			struct timezone * __tz)  ;
+extern int	__settimeofday  (__const struct timeval *__tv,
+			__const struct timezone *__tz)  ;
+extern int	settimeofday  (__const struct timeval *__tv,
+			__const struct timezone *__tz)  ;
+
+extern int	__select  (int __width, fd_set * __readfds,
+			fd_set * __writefds, fd_set * __exceptfds,
+			struct timeval * __timeout)  ;
+extern int	select  (int __width, fd_set * __readfds,
+			fd_set * __writefds, fd_set * __exceptfds,
+			struct timeval * __timeout)  ;
+
+extern int	__getitimer  (int __which,
+			struct itimerval *__value)  ;
+extern int	getitimer  (int __which,
+			struct itimerval *__value)  ;
+extern int	__setitimer  (int __which,
+			__const struct itimerval *__value,
+			struct itimerval *__ovalue)  ;
+extern int	setitimer  (int __which,
+			__const struct itimerval *__value,
+			struct itimerval *__ovalue)  ;
+
+extern int	__adjtime  (struct timeval * __itv,
+			struct timeval * __otv)  ;
+extern int	adjtime  (struct timeval * __itv,
+			struct timeval * __otv)  ;
+
+extern int	__utimes  (char *__path, struct timeval *tvp)  ;
+extern int	utimes  (char *__path, struct timeval *tvp)  ;
+
+ 
+
+
+# 11 "../../include/pircd.h" 2
+
+
+# 1 "/usr/include/sys/socket.h" 1 3
+
+
+
+
+# 1 "/usr/include/linux/socket.h" 1 3
+
+
+
+# 1 "/usr/include/asm/socket.h" 1 3
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+# 4 "/usr/include/linux/socket.h" 2 3
+
+
+# 1 "/usr/include/linux/uio.h" 1 3
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+struct iovec
+{
+	void *iov_base;		 
+	int iov_len;
+};
+
+
+
+
+
+# 6 "/usr/include/linux/socket.h" 2 3
+
+
+struct sockaddr 
+{
+	unsigned short	sa_family;	 
+	char		sa_data[14];	 
+};
+
+struct linger {
+	int		l_onoff;	 
+	int		l_linger;	 
+};
+
+ 
+
+
+
+
+ 
+struct msghdr 
+{
+	void	*	msg_name;	 
+	int		msg_namelen;	 
+	struct iovec *	msg_iov;	 
+	int 		msg_iovlen;	 
+	void 	*	msg_control;	 
+	int		msg_controllen;	 
+	int		msg_flags;	 
+};
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+					 
+					 
+					 
+					 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+ 
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+# 5 "/usr/include/sys/socket.h" 2 3
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+struct msghdr;
+
+ 
+
+
+
+int socket  (int __family, int __type, int __protocol)  ;
+
+ 
+
+
+
+
+int socketpair  (int __family, int __type, int __protocol,
+		int __sockvec[2])  ;
+
+ 
+
+int bind  (int __sockfd, __const struct sockaddr *__my_addr,
+		int __addrlen)  ;
+
+ 
+
+
+
+int connect  (int __sockfd, __const struct sockaddr *__serv_addr,
+		int __addrlen)  ;
+
+ 
+
+
+int listen  (int __sockfd, int __n)  ;
+
+ 
+
+
+
+
+int accept  (int __sockfd, __const struct sockaddr *__peer,
+		int *__paddrlen)  ;
+
+ 
+
+
+
+int getsockopt  (int __s, int __level, int __optname,
+		void *__optval, int *__optlen)  ;
+
+ 
+
+
+int setsockopt  (int __s, int __level, int __optname,
+		__const void *__optval, int optlen)  ;
+
+ 
+int getsockname  (int __sockfd, struct sockaddr *__addr,
+		int *__paddrlen)  ;
+
+ 
+
+int getpeername  (int __sockfd, struct sockaddr *__peer,
+		int *__paddrlen)  ;
+
+ 
+int send  (int __sockfd, __const void *__buff, size_t __len,
+		 unsigned int __flags)  ;
+
+ 
+
+int recv  (int __sockfd, void *__buff, size_t __len,
+		 unsigned int __flags)  ;
+
+ 
+
+int sendto  (int __sockfd, __const void *__buff, size_t __len,
+		 unsigned int __flags, __const struct sockaddr *__to,
+		 int __tolen)  ;
+
+ 
+
+
+
+int recvfrom  (int __sockfd, void *__buff, size_t __len,
+		 unsigned int __flags, struct sockaddr *__from,
+		 int *__fromlen)  ;
+
+ 
+
+extern int sendmsg  (int __fd, __const struct msghdr *__message,
+			unsigned int __flags)  ;
+
+ 
+
+extern int recvmsg  (int __fd, struct msghdr *__message,
+			unsigned int __flags)  ;
+ 
+ 
+
+
+
+
+
+int shutdown  (int __sockfd, int __how)  ;
+
+
+ 
+int rcmd  (char **__ahost, unsigned short __inport,
+		__const char *__locuser, __const char *__remuser,
+		__const char *__cmd, int *__fd2p)  ;
+int rresvport  (int *__port)  ;
+int ruserok  (__const char *__rhost, int __superuser,
+		__const char *__ruser, __const char *__luser)  ;
+int rexec  (char **__ahost, int __inport, __const char *__user,
+		 __const char *__passwd, __const char *__cmd,
+		 int *__fd2p)  ;
+
+ 
+
+
+# 13 "../../include/pircd.h" 2
+
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stdarg.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+typedef void *__gnuc_va_list;
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+void va_end (__gnuc_va_list);		 
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 137 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/stdarg.h" 3
+
+
+ 
+
+
+
+
+ 
+
+ 
+
+ 
+
+typedef __gnuc_va_list va_list;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 14 "../../include/pircd.h" 2
+
+
+
+# 1 "../../include/struct.h" 1
+ 
+
+
+
+
+
+
+
+
+
+# 1 "../../include/queue.h" 1
+ 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+# 227 "../../include/queue.h"
+
+
+
+
+
+
+
+
+
+# 244 "../../include/queue.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+# 296 "../../include/queue.h"
+
+
+# 306 "../../include/queue.h"
+
+
+# 316 "../../include/queue.h"
+
+
+# 326 "../../include/queue.h"
+
+
+# 339 "../../include/queue.h"
+
+# 11 "../../include/struct.h" 2
+
+
+typedef struct sClient Client;		 
+typedef struct sClient aClient;		 
+typedef struct sUser User;		 
+typedef struct sUser anUser;		 
+typedef struct sServer Server;		 
+typedef struct sChan Chan;		 
+typedef struct sChan Channel;
+typedef struct sMember Member;		 
+typedef struct sMember  UClist;
+typedef struct sBan Ban;		 
+typedef struct sCMode CMode;		 
+typedef struct sListener aListener;
+
+typedef unsigned long flag_t;
+typedef unsigned char token_t;
+
+
+
+
+
+
+
+
+struct sClient
+	{
+		Client *prev, *next, *hnext, *from;
+		User *user;
+		Server *server;
+		char name[30 +1];
+		char sockhost[30 +1];
+		char ident[8 +1];
+		char info[128 +1];
+		unsigned char hops;  
+		 
+		int fd, inuse;
+		flag_t flags;
+		time_t last_cmd, signon, ping_sent;
+	};
+	
+struct sUser
+	{
+		char username[8 +1];
+		char host[64 +1];
+		User *next, *prev;
+		Member *channel;
+		char *away;
+		Server *server;
+		unsigned long umode;
+		Client *cptr;
+	};
+
+struct sServer
+	{
+		char host[64 +1];
+		Server *next, *prev, *downlink, *uplink;
+		Server *leftlink, *rightlink;
+		Client *cptr;
+	};
+
+struct sBan
+	{
+		Ban *next;
+		char *banmask;
+		char *nick;
+		time_t time;
+	};
+
+struct sCMode
+	{
+		unsigned long mode, limit;
+		char key[32 ];
+	};
+
+struct sMember
+	{
+		Member *nextu;
+		Member *nextc;
+		Chan *chptr;
+		Client *cptr;
+		char flags;
+	};
+
+struct sChan
+	{
+		Chan *prev, *next, *hnext;
+		CMode mode;
+		Member *members;
+		int occupants;
+		Ban *banlist;
+		char name[64 ];
+	};
+
+struct sListener {
+    char *addy;
+    int port, fd;
+    struct {	struct  sListener  *le_next;	struct  sListener  **le_prev;	}    portent;
+};
+
+Client *firstClient, *lastClient;
+User *firstUser, *lastUser;
+Server *firstServer, *lastServer;
+Chan *firstChan, *lastChan;
+
+ 
+
+
+
+
+
+
+# 17 "../../include/pircd.h" 2
+
+# 1 "../../include/hash.h" 1
+ 
+
+
+
+
+# 31 "../../include/hash.h"
+
+
+
+
+
+
+
+typedef struct hasharray_ hasharray;
+typedef struct hashlist_ hashlist;
+
+
+# 1 "../../include/hash.h" 1
+ 
+
+
+
+
+# 25 "../../include/hash.h"
+
+ 
+
+extern hasharray  hltest  ;
+
+
+
+
+# 178 "../../include/hash.h"
+
+
+# 42 "../../include/hash.h" 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+typedef union squadchar quadchar;
+
+union squadchar
+    {
+	struct
+	    {
+	    	 
+
+
+
+
+
+
+
+
+
+	    	
+
+
+
+
+
+
+
+
+
+		char b4;
+
+
+
+
+
+
+
+
+
+
+
+
+		char b3;
+
+
+
+
+
+
+
+
+
+
+
+		char b2;
+
+
+
+
+
+
+
+
+
+
+
+		char b1;
+# 134 "../../include/hash.h"
+
+	    } b;
+	struct
+	    {
+
+
+
+		unsigned short w2, w1;
+
+	    } w;
+	unsigned long q;
+    };
+
+ 
+
+
+struct hasharray_
+{
+   char *key;
+   void *data;
+   struct hasharray_ *next; 
+};
+
+struct hashlist_
+{
+   int size;
+   int buckets;
+   hasharray **hash;
+};
+
+
+extern void		init_hash();
+extern void		*hash_lookup(hashlist *hashl, const char *key);
+extern void		hash_insert(hashlist *hashl, const char *key, void *instruct);
+extern void		hash_delete(hashlist *hashl, char *key);
+extern int		hash_delete_bydatum(hashlist *hashl, char *key, void *datum);
+extern void		zero_hash(hashlist *t);
+
+
+
+
+
+
+
+
+
+# 18 "../../include/pircd.h" 2
+
+# 1 "../../include/sysdep.h" 1
+
+ 
+
+
+# 1 "../../include/../src/port/port.h" 1
+
+
+
+
+extern char *strdup(const char *string);
+
+
+
+# 22 "../../include/../src/port/port.h"
+
+
+
+
+# 5 "../../include/sysdep.h" 2
+
+
+
+
+
+
+# 1 "/usr/include/sys/errno.h" 1 3
+
+# 11 "../../include/sysdep.h" 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1 "/usr/include/sys/param.h" 1 3
+
+
+
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/limits.h" 1 3
+ 
+
+
+ 
+
+
+
+
+
+ 
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/syslimits.h" 1 3
+ 
+
+
+
+
+
+# 1 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/limits.h" 1 3
+ 
+
+
+ 
+
+# 109 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/limits.h" 3
+
+
+
+# 1 "/usr/include/limits.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+# 1 "/usr/include/posix1_lim.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+ 
+# 1 "/usr/include/linux/limits.h" 1 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 72 "/usr/include/posix1_lim.h" 2 3
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+# 30 "/usr/include/limits.h" 2 3
+
+
+
+
+# 1 "/usr/include/posix2_lim.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 34 "/usr/include/limits.h" 2 3
+
+
+
+
+ 
+
+
+
+
+
+  
+# 53 "/usr/include/limits.h" 3
+
+
+# 115 "/usr/include/limits.h" 3
+
+
+
+
+
+
+
+
+# 138 "/usr/include/limits.h" 3
+
+
+
+# 112 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/limits.h" 2 3
+
+
+
+
+# 7 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/syslimits.h" 2 3
+
+
+# 11 "/usr/lib/gcc-lib/i486-linux/2.7.2/include/limits.h" 2 3
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+# 4 "/usr/include/sys/param.h" 2 3
+
+
+# 1 "/usr/include/linux/param.h" 1 3
+
+
+
+# 1 "/usr/include/asm/param.h" 1 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 4 "/usr/include/linux/param.h" 2 3
+
+
+
+# 6 "/usr/include/sys/param.h" 2 3
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+# 27 "../../include/sysdep.h" 2
+
+
+
+
+
+# 1 "/usr/include/stdlib.h" 1 3
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+ 
+# 417 "/usr/include/stdlib.h" 3
+
+# 32 "../../include/sysdep.h" 2
+
+# 1 "/usr/include/strings.h" 1 3
+
+# 33 "../../include/sysdep.h" 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern  void  dummy();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 19 "../../include/pircd.h" 2
+
+# 1 "../../include/defs.h" 1
+
+
+
+
+
+
+
+
+
+  
+
+
+
+ 
+
+
+
+
+# 20 "../../include/pircd.h" 2
+
+# 1 "../../include/types.h" 1
+
+
+
+typedef struct configblock_ ConfigBlock;
+typedef struct configelement_ ConfigData;
+typedef struct configblock_ ConfBlock;
+typedef struct configelement_ ConfData;
+
+
+# 21 "../../include/pircd.h" 2
+
+# 1 "../../include/macro.h" 1
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern unsigned char lowertab[], uppertab[], digit_tab[], alpha_tab[];
+
+
+
+
+
+
+
+
+# 22 "../../include/pircd.h" 2
+
+# 1 "../../include/flags.h" 1
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+struct flag_list
+	{
+		flag_t flag;
+		char modechar;
+ 		char needparam;
+		char *name;           
+		short xbit;	      
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern struct flag_list umode_list[];
+# 86 "../../include/flags.h"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+extern struct flag_list cmode_list[];
+# 118 "../../include/flags.h"
+
+
+
+
+
+
+
+# 23 "../../include/pircd.h" 2
+
+
+# 1 "../../include/h.h" 1
+ 
+
+
+extern		int mycmp(u_char *, u_char *);
+extern		int init_tabs();
+
+
+ 
+
+
+extern		int	read_config(const char *);
+extern		void	free_strings(char **x);
+
+extern		ConfBlock	*getblockbypath(char *path);
+
+ 
+
+
+extern		void	noblock(int fd);
+extern		void	set_sock_opts(int fd);
+extern		void	want_to_listen(char *addy, int port);
+extern		void	lqueue_delete(char *addy, int port);
+extern		void	start_listening(struct sListener *);
+extern		void	stop_listening(struct sListener *);
+
+
+
+ 
+
+
+extern		void	oom();
+extern		int	match(const char *pattern, const char *to);
+extern		void	log_error(const char *fmt, ...);
+extern		void	logit(const char *fmt, ...);
+extern		void	fdprintf(int fd, const char *fmt, ...);
+extern		void DebugLog(int loglevel, const char *fmt, ...);
+extern		void	line_splitter(char *buffer, int (* sP)() );
+extern		char	*ctoip (const char *f);
+extern		char	*iptoc (const char *f);
+extern		void	*oalloc(size_t);
+extern		char	*litoa(long);
+
+ 
+
+
+extern		int	dnsloop(int);
+extern		int	boot_dns();
+extern		int	dnsdie();
+extern		int	dnsline(char *buf);
+
+
+ 
+
+
+extern 		void	init_lists();
+extern 		Client	*new_client(char *name);
+extern 		void	del_client(Client *cptr);
+extern 		User	*new_user();
+extern 		User	*make_user(Client *cptr, Server *svptr);
+extern 		void	remove_user(User *uptr);
+extern 		Server	*new_server();
+extern 		void	del_server(Server *svptr);
+extern 		Server	*make_server(Client *cptr, Server *uplink);
+extern 		void	remove_server(Server *svptr);
+extern 		Chan	*new_channel(char *name);
+extern 		void	del_channel(Chan *chptr);
+extern 		Member	*find_member(Chan *chptr, Client *cptr);
+extern 		Member	*add_user_to_channel(Chan *chptr, Client *cptr);
+extern 		int	rem_user_from_channel(Member *mptr);
+extern 		int	is_banned(Channel *chptr, Client *cptr, Member *mptr);
+extern 		int	ban_is_redundant(Channel *chptr, char *ban);
+extern 		int	add_ban_to_channel(Chan *chptr, char *banmask);
+extern 		void	del_ban_from_channel(Chan *chptr, Ban *bptr);
+extern		char	*get_userhost(Client *acptr);
+
+ 
+
+
+extern		void	free_client(Client *);
+extern inline 		void	use_client(Client *);
+extern inline 		void	rel_client(Client *);
+extern		void	free_listener(aListener *);
+
+
+ 
+
+
+extern		void	init_hash();
+extern		void 	add_client_hash_entry(Client *cptr);
+extern		void 	del_client_hash_entry(Client *cptr);
+extern		Client 	*find_client_hash_entry(char *name);
+extern		void	add_channel_hash_entry(Chan *chptr);
+extern		void	del_channel_hash_entry(Chan *chptr);
+extern		Chan	*find_channel_hash_entry(char *name);
+
+
+# 1 "../../include/hash.h" 1
+ 
+
+
+
+
+# 21 "../../include/hash.h"
+
+ 
+extern   int 		*hash_find_ "hltest" (const char *); extern void		remove_hash_ "hltest" (  int  *u); extern int		add_hash_ "hltest" (  int  *) ;
+
+
+
+
+
+
+
+
+
+# 178 "../../include/hash.h"
+
+
+# 97 "../../include/h.h" 2
+
+# 25 "../../include/pircd.h" 2
+
+
+
+
+
+
+
+
+
+# 43 "../../include/pircd.h"
+
+
+
+# 22 "struct.c" 2
+
+
+ 
+
+Client *firstClient, *lastClient;
+User *firstUser, *lastUser;
+Server *firstServer, *lastServer;
+Chan *firstChan, *lastChan;
+
+Client *local[150 ], me;
+
+
+ 
+
+void	init_lists()
+{
+	firstClient = lastClient = &me;
+	firstChan = lastChan = (Chan *)((void *)0) ;
+	init_hash();
+}
+
+
+ 
+
+Client *new_client(char *name)
+{
+	Client *cptr;
+	
+	cptr = (Client *)oalloc (sizeof(Client));
+	if (!cptr)
+		oom() ;
+	memset( cptr ,0,  sizeof(Client) ) ;
+	cptr->prev = lastClient;
+	lastClient->next = cptr;
+	cptr->next = (Client *)((void *)0) ;
+	lastClient = cptr;
+	do{strncpy( cptr->name ,   name ,   30  );  cptr->name [  30  -1]=0;}while(0) ;
+	cptr->user = (User *)((void *)0) ;
+	cptr->server = (Server *)((void *)0) ;
+	cptr->hnext = cptr->from = (Client *)((void *)0) ;	
+	add_client_hash_entry(cptr);
+	return cptr;
+}
+
+void del_client(Client *cptr)
+{
+	if (cptr->prev)
+		cptr->prev->next = cptr->next;
+	else
+		firstClient = cptr->next;
+	if (cptr->next)
+		cptr->next->prev = cptr->prev;
+	else
+		lastClient = cptr->prev;
+	del_client_hash_entry(cptr);
+	free_client(cptr);
+	return;
+}
+
+ 
+
+User *new_user()
+{
+	User *uptr;
+	
+	uptr = (User *)oalloc (sizeof(User));
+	if (!uptr)
+		oom() ;  
+	memset( uptr ,0,  sizeof(User) ) ;
+	uptr->prev = lastUser;
+	lastUser->next = uptr;
+	uptr->next = (User *)((void *)0) ;
+	lastUser = uptr;
+	uptr->away = (char *)((void *)0) ;
+	uptr->channel = (UClist *)((void *)0) ;
+	return uptr;
+}
+
+User *make_user(Client *cptr, Server *svptr)
+{
+	User *uptr;
+	
+	uptr = new_user();
+	uptr->cptr = cptr;
+	uptr->server = svptr;
+	cptr->user = uptr;
+	return(uptr);
+}
+
+void remove_user(User *uptr)
+{
+	if (uptr->prev)
+		uptr->prev->next = uptr->next;
+	else
+		firstUser = uptr->next;
+	if (uptr->next)
+		uptr->next->prev = uptr->prev;
+	else
+		lastUser = uptr->prev;
+	free(uptr);
+	return;
+}
+
+ 
+
+Server *new_server()
+{
+	Server *svptr;
+	
+	svptr = (Server *)oalloc (sizeof(Server));
+	if (!svptr)
+		oom() ;
+	memset( svptr ,0,  sizeof(Server) ) ;
+	svptr->prev = lastServer;
+	lastServer->next = svptr;
+	svptr->next = (Server *)((void *)0) ;
+	lastServer = svptr;
+	svptr->uplink = svptr->downlink = svptr->leftlink = svptr->rightlink =
+			(Server *)((void *)0) ;
+	return svptr;
+}
+
+void del_server(Server *svptr)
+{
+	if (svptr->prev)
+		svptr->prev->next = svptr->next;
+	else
+		firstServer = svptr->next;
+	if (svptr->next)
+		svptr->next->prev = svptr->prev;
+	else
+		lastServer = svptr->prev;
+	free(svptr);
+	return;
+}
+
+Server *make_server(Client *cptr, Server *uplink)
+{
+	Server *svptr, *sv2ptr;
+	
+	svptr = new_server();
+	svptr->uplink = uplink;
+	if (uplink->downlink)
+	{
+		for (sv2ptr = uplink->downlink; sv2ptr->rightlink;
+				sv2ptr = sv2ptr->rightlink)
+			;
+		sv2ptr->rightlink = svptr;
+		svptr->leftlink = sv2ptr;
+	}
+	else
+		uplink->downlink = svptr;
+	return(svptr);
+}
+
+void remove_server(Server *svptr)
+{
+	
+	if (svptr->uplink->downlink == svptr)
+		svptr->uplink->downlink = svptr->rightlink;
+	if (svptr->rightlink)
+		svptr->rightlink->leftlink = svptr->leftlink;
+	if (svptr->leftlink)
+		svptr->leftlink->rightlink = svptr->rightlink;
+	del_server(svptr);
+	return;
+}
+
+ 
+
+Chan *new_channel(char *name)
+{
+	Chan *chptr;
+	
+	chptr = (Chan *)oalloc (sizeof(Chan));
+	if (!chptr)
+		oom() ;
+	memset( chptr ,0,  sizeof(Chan) ) ;
+	chptr->banlist = (Ban *)((void *)0) ;
+	chptr->members = (Member *)((void *)0) ;
+	chptr->prev = lastChan;
+	if (lastChan)
+		lastChan->next = chptr;
+	chptr->next = (Chan *)((void *)0) ;
+	lastChan = chptr;
+	chptr->members = (Member *)((void *)0) ;
+	do{strncpy( chptr->name ,   name ,   64  );  chptr->name [  64  -1]=0;}while(0) ;
+	add_channel_hash_entry(chptr);
+	return chptr;
+}
+
+void del_channel(Chan *chptr)
+{
+	if (chptr->prev)
+		chptr->prev->next = chptr->next;
+	else
+		firstChan = chptr->next;
+	if (chptr->next)
+		chptr->next->prev = chptr->prev;
+	else
+		lastChan = chptr->prev;
+	del_channel_hash_entry(chptr);
+	free(chptr);
+	return;
+}
+
+ 
+
+Member	*find_member(Chan *chptr, Client *cptr)
+{
+	register Member *mptr;
+	
+	for (mptr = cptr->user->channel; mptr && mptr->chptr != chptr;
+			mptr = mptr->nextc)
+		;
+	return(mptr);
+}
+
+Member	*add_user_to_channel(Chan *chptr, Client *cptr)
+{
+	register Member *mptr;
+
+	mptr = (Member *)oalloc (sizeof(Member));
+	if (!mptr)
+		oom() ;
+	memset( mptr ,0,  sizeof(Member) ) ;
+	mptr->nextu = chptr->members;
+	mptr->nextc = cptr->user->channel;
+	mptr->chptr = chptr;
+	mptr->cptr = cptr;
+	chptr->occupants++;
+	return (mptr);
+}
+
+int rem_user_from_channel(Member *mptr)
+{
+	register Member *m2ptr;
+	register Chan *chptr;
+	User *uptr;
+	
+	if (!mptr)
+		return(-1);
+	chptr = mptr->chptr;
+	uptr = mptr->cptr->user;
+	if (mptr == chptr->members)
+		chptr->members = mptr->nextu;
+	else
+	{
+		for (m2ptr = chptr->members; m2ptr->nextu
+				&& m2ptr->nextu != mptr; m2ptr = m2ptr->nextu)
+			;
+		m2ptr->nextu = mptr->nextu;
+	}
+	if (mptr == uptr->channel)
+		uptr->channel = mptr->nextc;
+	else
+	{
+		for (m2ptr = uptr->channel; m2ptr->nextc
+				&& m2ptr->nextc != mptr; m2ptr = m2ptr->nextc)
+			;
+		m2ptr->nextu = mptr->nextu;
+	}
+	chptr->occupants--;
+	free(mptr);
+	return(0);
+}
+
+
+ 
+
+
+ 
+
+int is_banned(Channel *chptr, Client *cptr, Member *mptr)
+{
+	register Ban *bptr;
+	register char *nus;
+	
+	if (mptr)
+	{
+		if (mptr->flags & 0x00000008  )
+			return(1);
+		else if (mptr->flags & 0x00000010  )
+			return(0);
+		cptr = mptr->cptr;
+		chptr = mptr->chptr;
+	}
+	
+	if (!chptr->banlist)
+		return(0);  
+		
+	nus = get_userhost(cptr);
+
+	for (bptr = chptr->banlist; bptr; bptr = bptr->next)
+	{
+		if (match(bptr->banmask, nus))
+			return(1);
+	}
+	return(0);
+}
+
+char *get_userhost(Client *acptr)
+{
+    static char res[30 + 8 + 64 +5];
+
+    if (!acptr || ! (( acptr )->user) )
+           return ((void *)0) ;
+
+    sprintf(res, "%s!%s@%s", acptr->name, acptr->user->username, acptr->user->host );
+    return res;
+}
+
+int ban_is_redundant(Channel *chptr, char *ban)
+{
+	register Ban *bptr;
+	
+	for (bptr = chptr->banlist; bptr; bptr = bptr->next)
+	{
+		if (match(bptr->banmask, ban))
+			return(1);
+	}
+	return(0);
+}
+
+int add_ban_to_channel(Chan *chptr, char *banmask)
+{
+	register Ban *bptr;
+	register Member *mptr;
+
+	if (ban_is_redundant(chptr, banmask))
+		return(0);
+
+	bptr = oalloc (sizeof(Ban));
+	if (!bptr)
+		oom() ;
+	
+	bptr->next = chptr->banlist;
+	chptr->banlist = bptr;
+	bptr->banmask = banmask;
+	for (mptr = chptr->members; mptr; mptr = mptr->nextu)
+		mptr->flags &= ~(0x00000008  | 0x00000010  );
+	return(1);
+}
+
+void del_ban_from_channel(Chan *chptr, Ban *bptr)
+{
+	register Ban *b2ptr;
+	
+	if (chptr->banlist == bptr)
+		chptr->banlist = bptr->next;
+	else
+	{
+		for (b2ptr = chptr->banlist; b2ptr->next != bptr;
+				b2ptr = b2ptr->next)
+			;
+		b2ptr->next = bptr->next;
+	}
+	free(bptr);
+	return;
+}

@@ -1,0 +1,10 @@
+SRCDIR=@top_srcdir@
+INCDIR=@top_srcdir@/include
+include ../Makefile.inc
+CC=@CC@
+ROOTDIR=../../
+LIB=socket.$(LSUFFIX)
+OBJS=socket.o
+LOCINC=sockstuff.h
+
+include ../libmake
