@@ -1,5 +1,5 @@
 #
-#    Contributers
+#    Contributors
 # 
 
 See `LICENSE' for licensing and copyright information
@@ -10,15 +10,18 @@ California, Berkeley and its contributors.
 This product includes software developed by SSH Communications Security Oy, Espoo, Finland
 All rights reserved.
 
+
+#( Below are the assignments )
+
             Makefiles/config scripts, Actual Protocol Messages
                       Sockets, Internal structures
-                  Utility macros/functions, DNS resolver
+                  Utility macros/functions, DNS layer 'stuff'
                       version control/code managment
 ----------------------------------------------------------------------------------------
 Mysidia (C) 1998		***REMOVED***
 
 
-                                Internal Structures
+                      Internal Structures, Hashes
 ----------------------------------------------------------------------------------------
 binary
 
@@ -26,3 +29,4 @@ binary
 
 ----------------------------------------------------------------------------------------
 
+#fin
