@@ -2,7 +2,7 @@
 LSUFFIX=obj
 
 
-DLIB=/home/home.px/ncserv/.//src/$(LIB)
+DLIB=/home/px/ncserv/.//src/$(LIB)
 .SUFFIXES: .cc .cpp .c .so
 .cc.o: $(INCLUDES)
 	$(CXX)	-c $< $(CFLAGS) $(WALL) -o                      $@
@@ -29,7 +29,7 @@ $(DLIB):
 
 $(LIB): $(OBJS) $(INCLUDES) $(LOCINC) $(DLIB)
 	$(LD)	-r	$(OBJS) -o                              $@
-	@ln -f $@ /home/home.px/ncserv/.//src/$@
+	@ln -f $@ /home/px/ncserv/.//src/$@
 
 clean:
 	rm -f *.o $(LIB) *~ *.so *.obj
