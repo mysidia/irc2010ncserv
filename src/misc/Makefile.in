@@ -4,7 +4,7 @@ include ../Makefile.inc
 CC=@CC@
 ROOTDIR=../../
 LIB=misc.$(LSUFFIX)
-OBJS=misc.o alloc.o
+OBJS=misc.o alloc.o md5.o
 LOCINC=
 
 include ../libmake

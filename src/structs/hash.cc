@@ -36,7 +36,9 @@ Client	*client_buckets[4096];
 Channel	*channel_buckets[4096];
 iextern void init_hash2();
 
-/* set up the hash tables */
+/*!
+ * set up the hash tables
+ */
 
 void init_hash()
 {
@@ -396,3 +398,4 @@ datatype *hash_find_##index (const char *seek) \
 #define H3
 #include "hash.h"
 
+/**********************************************************************/

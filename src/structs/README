@@ -4,3 +4,5 @@ the hash table for local users and channels.
 
 Additionally, all routines for handling the 'global registry' currently fall
 under this layer, although they should be in separate layers.
+[channels, nicks, etc]
+
