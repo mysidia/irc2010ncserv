@@ -5,3 +5,6 @@ appropriate parsers.
 
 Its primary job is operating ircd's TCP listener ports on which clients and
 servers can connect.
+
+
+BUGS: I/O

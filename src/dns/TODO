@@ -1,3 +1,4 @@
 * Make DNS layer use ADNS for resolution
 * Implement access control
 * Implement ident-checking
+* Socks checking maybe??
