@@ -27,8 +27,9 @@ Client *firstClient, *lastClient;
 User *firstUser, *lastUser;
 Server *firstServer, *lastServer;
 Chan *firstChan, *lastChan;
-
-Client *local[MAXCONNECTIONS], me;
+Connection *local[MAXCONNECTIONS];
+Client me;
+LIST_HEAD(,Connection)       inlinks;
 
 
 /* Initialize the lists */
@@ -37,6 +38,8 @@ void	init_lists()
 {
 	firstClient = lastClient = &me;
 	firstChan = lastChan = (Chan *)NULL;
+	LIST_INIT(&inlinks);
+
 	init_hash();
 }
 
@@ -59,7 +62,9 @@ Client *new_client(char *name)
 
 	cptr->next = (Client *)NULL;
 	lastClient = cptr;
-	strncpyzt(cptr->name, name, NICKLEN);
+        if (name)
+ 	    strncpyzt(cptr->name, name, NICKLEN);
+	else *cptr->name = '\0';
 	cptr->user = (User *)NULL;
 	cptr->server = (Server *)NULL;
 	cptr->hnext = cptr->from = (Client *)NULL;
@@ -390,4 +395,25 @@ void del_ban_from_channel(Chan *chptr, Ban *bptr)
 	}
 	free(bptr);
 	return;
+}
+
+/* Inbound socket connection structures */
+
+Connection *new_inlink()
+{
+	Connection *link;
+	
+	link = new Connection;
+	if (!link)
+		out_of_memory();
+	LIST_ENTRY_INIT(link, lp_con);
+	LIST_INSERT_HEAD(&inlinks, link, lp_con);
+
+	return link;
+}
+
+void del_inlink(Connection *link)
+{
+	LIST_REMOVE(link, lp_con);
+	delete link;
 }

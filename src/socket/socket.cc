@@ -257,6 +257,21 @@ void    set_sock_opts(int fd)
 namespace socketio {
 
   void listener_accept(aListener *lst) {
+       Connection *tmp;
+       struct sockaddr_in addr;
+       unsigned int addrlen = sizeof(struct sockaddr_in);
+       int nfd;
+
+       if ((nfd = accept(lst->fd, (struct sockaddr *)&addr, &addrlen)) < 0) {
+           DebugLog(8, "Unable to accept connection (port=%d, errno=%d).", lst->port, errno);
+           return;
+       }
+
+       tmp = new_inlink();
+       tmp->fd = nfd;
+       tmp->ip = addr.sin_addr;
+       tmp->client = new_client(NULL);
+       tmp->con_type = CON_UNKNOWN;
   }
 
   void pollio(time_t caltime = 0) {

@@ -1,14 +1,29 @@
 #ifndef __client_h__
 #define __client_h__
 
+typedef enum {
+   CON_UNDEFINED, CON_UNKNOWN, CON_USER, CON_SERVER
+} connection_type;
+
 class Connection				
 {						
 	public:					
 	char ident[USERLEN+1];			
-	flag_t con_type;			
-        time_t last_cmd, signon, ping_sent;	
+	connection_type con_type;			
+	time_t last_cmd, signon, ping_sent;	
+	struct in_addr ip;
+	Client *client;
+
 	int fd;				
-	Client *cli;				
+	LIST_ENTRY(Connection)   lp_con;
+
+	Connection() :
+          con_type(CON_UNDEFINED), last_cmd(0), signon(0), ping_sent(0)
+        {
+          ident[0] = '\0';
+          ip.s_addr = 0;
+	}
+
 };
 
 class Client

@@ -26,6 +26,9 @@ extern		void	lqueue_delete(char *addy, int port);
 extern		void	start_listening(struct sListener *);
 extern		void	stop_listening(struct sListener *);
 extern		void	update_listeners();
+namespace socketio {
+extern		void	pollio(time_t caltime = 0);
+};
 
 /*
  *  misc.so
@@ -56,6 +59,8 @@ extern		int	dnsline(char *buf);
  *  struct.c
  */
 extern 		void	init_lists();
+extern		Connection	*new_inlink();
+extern		void del_inlink(Connection *link);
 extern 		Client	*new_client(char *name);
 extern 		void	del_client(Client *cptr);
 extern 		User	*new_user();

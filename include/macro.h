@@ -4,8 +4,8 @@
  *      special macros
  */
 #define czerosocket(x)  {if (x>=0) closesocket(x); (x) = -1;}
-#define strncpyzt(x, y, z) {strncpy(x, y, z); x[z-1]=0;}
-#define strncatzt(x, y, z) {strncat(x, y, z); x[z-1]=0;}
+#define strncpyzt(x, y, z) do{strncpy(x, y, z); x[z-1]=0;}while(0)
+#define strncatzt(x, y, z) do{strncat(x, y, z); x[z-1]=0;}while(0)
 
 #define IsPerson(x)	((x)->user)
 

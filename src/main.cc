@@ -72,6 +72,7 @@ int main(int argc, char *argv[], char *envp[])
        if ((nextmaint<=NOW))
             nextmaint = imaint(1);
        dnsloop(1);
+       socketio::pollio(nextmaint);
        sleep(2);
      }
      exit(0);
