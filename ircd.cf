@@ -15,3 +15,10 @@ me {
 ;   socks=check,closedonly
 ;   maxlinks=1
 ;}
+
+; server {
+; connect_host=blah.com
+; port=xxxyz
+; auth.dsa=keys/blah.dsa
+; type=normal,servlink*1
+; }
