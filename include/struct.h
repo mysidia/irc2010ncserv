@@ -10,6 +10,7 @@
 
 #include "queue.h"
 #include "flags.h"
+
 typedef unsigned char token_t;
 
 #define NICKLEN 30
@@ -52,6 +53,7 @@ extern Client *firstClient, *lastClient;
 extern User *firstUser, *lastUser;
 extern Server *firstServer, *lastServer;
 extern Chan *firstChan, *lastChan;
+extern Connection **local;
 
 /* Client *local[MAXCONNECTIONS]; */
 

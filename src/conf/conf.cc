@@ -4,8 +4,9 @@
  *   Copyright C 1998 ***REMOVED*** <Mysidia>
  *   see file 'AUTHORS' for a comprehensive list of pIrcd authors
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the file 'LICENSE' included with this package
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public license Version 2
+ *   as published by the Free Software Foundation.
  *
  *   This program is distributed in the hope that it will be useful,
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -15,6 +16,7 @@
 
 #undef CDEBUG
 #undef CDEBUG2
+#define __conf_cc__
 #include "pircd.h"
 #include "conf.h"
 

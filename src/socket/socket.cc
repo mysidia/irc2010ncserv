@@ -36,6 +36,7 @@
 
 namespace socketio {
   int highest_fd = 0, num_sockets = 0;
+  void update_highfd();
 }
 
 /* aListener queued_listen; */
@@ -107,8 +108,10 @@ void stop_listening(aListener *tmp)
 		close(tmp->fd);
 		DebugLog(8, "Listening on port %d stopped.", tmp->port);
 	}
-	tmp->fd = -1;
 	LIST_REMOVE(tmp, portent);
+	if (tmp->fd == socketio::highest_fd)
+	    socketio::update_highfd();
+	tmp->fd = -1;
 	free_listener(tmp);
 	socketio::num_sockets--;
 }
@@ -149,6 +152,8 @@ void start_listening(aListener *start)
         LIST_ENTRY_INIT(newlistener, portent);
         LIST_INSERT_HEAD(&listenlist, newlistener, portent);
 	DebugLog(8, "Now Listening on port %d.", newlistener->port);
+	if (start->fd > socketio::highest_fd)
+	    socketio::highest_fd = start->fd;
 	socketio::num_sockets++;
 }
 
@@ -260,23 +265,49 @@ namespace socketio {
        Connection *tmp;
        struct sockaddr_in addr;
        unsigned int addrlen = sizeof(struct sockaddr_in);
-       int nfd;
+       int nfd, i;
 
        if ((nfd = accept(lst->fd, (struct sockaddr *)&addr, &addrlen)) < 0) {
            DebugLog(8, "Unable to accept connection (port=%d, errno=%d).", lst->port, errno);
            return;
        }
 
+       // Set it non-blocking
+       set_sock_opts(nfd);
+
+       // Create the new connection
        tmp = new_inlink();
        tmp->fd = nfd;
        tmp->ip = addr.sin_addr;
        tmp->client = new_client(NULL);
        tmp->con_type = CON_UNKNOWN;
+
+       // Store them on the 'local' fd hash
+       if (!local) {
+           if (tmp->fd > socketio::highest_fd)
+               socketio::highest_fd = tmp->fd;
+           local = (Connection **)malloc(sizeof(Connection *) * (highest_fd + 2));
+           for(i = 0; i < (highest_fd + 2); i++)
+               local[i] = (Connection *)0;
+       }
+       else {
+           int diff = (tmp->fd - socketio::highest_fd);
+
+           if (tmp->fd > socketio::highest_fd)
+               socketio::highest_fd = tmp->fd;   
+           else diff = 0;
+
+           local = (Connection **)realloc(local, sizeof(Connection *) * (highest_fd + 2));
+           for(i = (highest_fd - diff + 1); i >= 0 && i < (highest_fd + 2); i++)
+               local[i] = (Connection *)0;
+       }
+       local[tmp->fd] = tmp;
   }
 
-  void pollio(time_t caltime = 0) {
+  int pollio(time_t caltime = 0) {
        struct timeval tv;
        aListener *ltmp;
+       Connection *link;
 #if defined(USE_SELECT)
        fd_set readfd, writefd, xceptfd;
 #elif defined(USE_POLL)
@@ -297,9 +328,16 @@ namespace socketio {
        for (ltmp = LIST_FIRST(&listenlist) ;
             ltmp ; ltmp = LIST_NEXT(ltmp, portent))
             FD_SET(ltmp->fd, &readfd);
+       for (link = LIST_FIRST(&inlinks) ;
+            link ; link = LIST_NEXT(link, lp_con))
+             if (link->fd != -1) {
+                 FD_SET(link->fd, &readfd);
+                 if (!(link->statu & STAT_WOUT))
+                     FD_SET(link->fd, &writefd);
+             }
 
        xceptfd = readfd;
-       nfds = select(highest_fd+1, &readfd, &writefd, &xceptfd, &tv);
+       nfds = select(socketio::highest_fd+1, &readfd, &writefd, &xceptfd, &tv);
        if (nfds == -1) {
            perror("select");
            sleep(1);
@@ -314,6 +352,17 @@ namespace socketio {
        {
             pollfds[x].fd = ltmp->fd;
             pollfds[x].events = POLLIN | POLLERR | POLLHUP;
+            x++;
+       }
+       for (link = LIST_FIRST(&inlinks) ;
+            link ; link = LIST_NEXT(link, lp_con))
+       {
+             if (link->fd == -1)
+                 continue;
+            pollfds[x].fd = link->fd;
+            pollfds[x].events = POLLIN | POLLERR | POLLHUP;
+            if (!(link->status & STAT_WOUT))
+                pollfds[x].events |= POLLOUT;
             x++;
        }
        nfds = poll(pollfds, x+1, 1000 * tv.tv_sec);
@@ -334,10 +383,151 @@ namespace socketio {
 #endif
                     listener_accept(ltmp);
            }
+
+           for (link = LIST_FIRST(&inlinks) ;
+                link ; link = LIST_NEXT(link, lp_con))
+           {
+#if defined(USE_SELECT)
+                if (FD_ISSET(link->fd, writefd))
+#elif defined(USE_POLL)
+                if (pollfds[x].revents & POLLOUT)
+#endif
+                    link->status |= STAT_WOUT;
+#if defined(USE_SELECT)
+                if (FD_ISSET(link->fd, readfd))
+#elif defined(USE_POLL)
+                if (pollfds[x].revents & POLLIN)
+#endif
+                    link->read();
+#if defined(USE_SELECT)
+                if (FD_ISSET(link->fd, xceptfd))
+#elif defined(USE_POLL)
+                if (pollfds[x].revents & POLLHUP)
+#endif
+                    link->status |= STAT_DEAD;
+           }
+
        }
 
 #if !defined(USE_SELECT) && defined(USE_POLL)
        delete pollfds;
 #endif
+       return nfds > 0 ? 1 : 0;
+  }
+
+  void update_highfd()
+  {
+          aListener *tmp;
+          Connection *link;
+
+	  socketio::highest_fd = 0;
+          for (tmp = LIST_FIRST(&firstqlport) ;
+                      tmp ; tmp = LIST_NEXT(tmp, portent))
+ 	       if (tmp->fd > socketio::highest_fd)
+		   socketio::highest_fd = tmp->fd;
+          for (link = LIST_FIRST(&inlinks) ;
+                    link ; link = LIST_NEXT(link, lp_con))
+	       if (link->fd > socketio::highest_fd)
+		   socketio::highest_fd = link->fd;
   }
 }
+
+//////////////////////////////////////////////////////////////////////////
+// Input routines
+//////////////////////////////////////////////////////////////////////////
+
+void msgbuf_put(MsgBuf *q, char *s1, char *s2 = NULL)
+{
+    MsgBufBuffer mbb;
+    int len;
+
+    if (!q || !s1)
+        return;
+    if (!s2)
+        len = strlen(s1);
+    else len = strlen(s1) + strlen(s2);
+    mbb.buf = new char [len + 1];
+    if (!mbb.buf) 
+        out_of_memory();
+
+    strcpy(mbb.buf, s1);
+    if (s2)
+        strcat(mbb.buf, s2);
+    mbb.len = len;
+    if (q->buffers)
+        q->buffers = (MsgBufBuffer *)realloc(q->buffers, sizeof(MsgBufBuffer *) * (q->nbuffers+1));
+    else
+        q->buffers = (MsgBufBuffer *)malloc(sizeof(MsgBufBuffer *) * (q->nbuffers+1));
+    q->buffers[q->nbuffers] = mbb;
+    q->nbuffers++;
+}
+
+void Connection::read()
+{
+   static char recvbuffer[16384];
+   struct sockaddr sa;
+   socklen_t namelen;
+   char *cp, *cp2, *s;
+   int r, i;
+
+   if (getpeername(fd, &sa, &namelen) < 0) {
+       DebugLog(8, "getpeername(%d) failed: closing connection.", fd);       
+       status |= STAT_DEAD;
+       return;
+   }
+
+   while((r = recvfrom(fd, recvbuffer, sizeof(recvbuffer), 0, &sa, &namelen)) != -1) {
+     cp = NULL;
+
+     if (r == 0) {
+         status |= STAT_DEAD;
+         break;
+     }
+
+     do
+     {
+       s = cp ? cp + 1 : recvbuffer;
+
+       for(cp = s; cp; cp++)
+           if (*cp == '\r' || *cp == '\n')
+               break;
+       if (!cp) {
+           if (!recvQ.io) {
+               recvQ.io = new char [IRCBUF];
+
+               for(cp2 = s, i = 0; cp2; cp2++) {
+                   if (i >= (IRCLEN - 1))
+                       break;
+                   recvQ.io[i++] = *cp2;
+               }
+               if (cp2) {
+                   recvQ.io[i++] = '\n';
+                   recvQ.io[i++] = '\0';
+               }
+           }
+           break;
+       }
+       else {
+           if (recvQ.io) {
+               char a = *cp;
+
+               *cp = '\0';
+               msgbuf_put(&recvQ, recvQ.io, s);
+               *cp = a;
+
+               delete recvQ.io;
+           }
+           else {
+               char a = *cp;
+
+               *cp = '\0';
+               msgbuf_put(&recvQ, s);
+               *cp = a;
+           }
+       }
+     } while(1);
+   }
+}
+
+
+

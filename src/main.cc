@@ -11,6 +11,7 @@
  *
  */
 
+#define __main_cc__
 #include "pircd.h"
 #include "hash.h"
 #include <signal.h>
@@ -72,7 +73,9 @@ int main(int argc, char *argv[], char *envp[])
        if ((nextmaint<=NOW))
             nextmaint = imaint(1);
        dnsloop(1);
-       socketio::pollio(nextmaint);
+       if ( socketio::pollio(nextmaint) ) {
+//          msgbuf::process_input();
+       }
        sleep(2);
      }
      exit(0);

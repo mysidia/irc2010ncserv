@@ -13,6 +13,7 @@
  *
  */
 
+#define __resolver_cc__
 #include "pircd.h"
 #include "inet.h"
 

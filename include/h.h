@@ -27,7 +27,7 @@ extern		void	start_listening(struct sListener *);
 extern		void	stop_listening(struct sListener *);
 extern		void	update_listeners();
 namespace socketio {
-extern		void	pollio(time_t caltime = 0);
+extern		int	pollio(time_t caltime = 0);
 };
 
 /*

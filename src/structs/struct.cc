@@ -19,6 +19,7 @@
 **  Handles client/user/server/channel/member lists
 */
 
+#define __struct_cc__
 #include "pircd.h"
 
 /* Constant list pointers to be able to keep list */
@@ -27,9 +28,9 @@ Client *firstClient, *lastClient;
 User *firstUser, *lastUser;
 Server *firstServer, *lastServer;
 Chan *firstChan, *lastChan;
-Connection *local[MAXCONNECTIONS];
 Client me;
 LIST_HEAD(,Connection)       inlinks;
+Connection **local;
 
 
 /* Initialize the lists */

@@ -5,8 +5,9 @@
  *   Copyright (C) 1999 Garry Boyer <binary>
  *   see file 'AUTHORS' for a comprehensive list of pIrcd authors
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the file 'LICENSE' included with this package
+ *   This program is free software; you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public license Version 2
+ *   as published by the Free Software Foundation.
  *
  *   This program is distributed in the hope that it will be useful,
  *   but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -14,9 +15,10 @@
  *
  */
 
+#define __list_cc__
 #include "pircd.h"
 #include "h.h"
-__RCSID("$Id: list.cc,v 1.1 2001/03/12 03:13:06 mysidia Exp $");
+__RCSID("$Id: list.cc,v 1.2 2001/03/18 20:47:49 mysidia Exp $");
 
 
 void free_listener(aListener *listen)
