@@ -2,7 +2,7 @@
 LSUFFIX=obj
 
 
-DLIB=../$(LIB)
+DLIB=@top_srcdir@/src/$(LIB)
 .SUFFIXES: .cc .cpp .c .so
 .cc.o: $(INCLUDES)
 	$(CXX)	-c $< $(CFLAGS) $(WALL) -o                      $@
