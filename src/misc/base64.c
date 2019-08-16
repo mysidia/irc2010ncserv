@@ -1,6 +1,6 @@
 /*
  * Base64 Encoder, base64.c
- * Copyright (C) 2001 ***REMOVED***
+ * Copyright (C) 2001 Mysidia <***REMOVED***>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

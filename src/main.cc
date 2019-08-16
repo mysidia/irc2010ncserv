@@ -1,6 +1,7 @@
 /*
  *   pIrcd startup source file                                 src/main.c
- *   Copyright C 1998  ***REMOVED*** ***REMOVED***            (mysidia @ irc.dal.net)
+ *   Copyright C 1998  Mysidia <***REMOVED***>  (mysidia @ irc.dal.net)
+ *   Mysidia on QMUD   mysidia at qmud.org
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the file 'LICENSE' included with this package

@@ -1,5 +1,5 @@
 /*
- *   Copyright (C) 1997-2001 ***REMOVED***
+ *   Copyright (C) 1997-2001 Mysidia <***REMOVED***>
  *
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
