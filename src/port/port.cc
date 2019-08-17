@@ -1,7 +1,7 @@
 /*
  *   pIrcd ports source file                                   src/port/port.c
  *   Copyright C 1998 pIrcd Authors
- *   Copyright C 1998 Mysidia <***REMOVED***> <Mysidia>
+ *   Copyright C 1998 Mysidia <mysidia at qmud dot org> <Mysidia>
  *   see file 'AUTHORS' for a comprehensive list of pIrcd authors
  *
  *  This program is free software; you can redistribute it and/or modify

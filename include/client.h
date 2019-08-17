@@ -1,7 +1,7 @@
 /*
  * Client Header file 
  *
- * Copyright C 1998-2001  Mysidia <***REMOVED***>       
+ * Copyright C 1998-2001  Mysidia <mysidia at qmud dot org>       
  *
  *
  *   This program is free software; you can redistribute it and/or modify

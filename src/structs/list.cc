@@ -1,7 +1,7 @@
 /*
  *   pIrcd ports source file                            src/structs/hash.c
  *   Copyright C 1998 pIrcd Authors
- *   Copyright C 1998 Mysidia <***REMOVED***> <Mysidia>
+ *   Copyright C 1998 Mysidia <mysidia at qmud dot org> <Mysidia>
  *   Copyright (C) 1999 Garry Boyer <binary>
  *   see file 'AUTHORS' for a comprehensive list of pIrcd authors
  *

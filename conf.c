@@ -1,6 +1,6 @@
 /*
  *   pIrcd Options configuration script (ATTIC)         conf.c
- *   Copyright C 1998  Mysidia <***REMOVED***> 
+ *   Copyright C 1998  Mysidia <mysidia at qmud dot org> 
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the file 'LICENSE' included with this package
